@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Приглашение на свадьбу</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Forum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
         :root {
             --accent: #800000;
-            --bg-light: #f5f3e5;
+            --bg-light: #f2f1df; 
         }
 
         * {
@@ -26,7 +26,6 @@
             background-color: #000;
             font-family: 'Ruslan Display', cursive;
             scroll-behavior: smooth;
-            /* Убираем лишние отступы, которые могут влиять на прыжки */
             overflow-x: hidden; 
         }
 
@@ -41,13 +40,11 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Чтобы блок не "скакал", используем 100vh вместо 100dvh */
         .block-one {
             width: 100%;
             height: 100vh; 
             background: url('image.png') no-repeat center top;
             background-size: cover;
-            /* Предотвращаем схлопывание маржинов */
             display: block; 
         }
 
@@ -58,7 +55,6 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            /* Добавим четкую границу сверху и снизу, чтобы блок визуально стоял на месте */
             border-top: 1px solid rgba(128, 0, 0, 0.05);
             border-bottom: 1px solid rgba(128, 0, 0, 0.05);
             position: relative;
@@ -70,7 +66,6 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
         }
 
         .music-icon {
@@ -87,17 +82,15 @@
 
         .music-text {
             color: var(--accent);
-            font-size: 10px;
+            font-size: 11px;
             text-transform: uppercase;
-            font-weight: bold;
             letter-spacing: 1.5px;
-            opacity: 0.8;
+            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .image-block {
             width: 100%;
             line-height: 0;
-            /* Чтобы не было микро-щелей между фото и музыкой */
             margin-top: -1px; 
         }
 
@@ -107,53 +100,66 @@
             display: block;
         }
 
+        /* УВЕЛИЧЕННЫЙ БЛОК МЕСТО ПРОВЕДЕНИЯ */
         .location-section {
             background-color: var(--bg-light);
-            padding: 50px 20px;
+            padding: 80px 30px; /* Увеличили вертикальные отступы */
             text-align: center;
             color: var(--accent);
         }
 
         .section-title {
-            font-size: clamp(24px, 7vw, 30px);
-            margin-bottom: 30px;
+            /* Шрифт как песнопения, но крупнее */
+            font-family: 'Ruslan Display', cursive;
+            font-size: clamp(28px, 9vw, 36px); 
+            margin-bottom: 50px;
             text-transform: uppercase;
+            text-shadow: 0.5px 0 0 var(--accent);
+        }
+
+        /* Специальное исключение для заголовка Место проведения, если нужно оставить Playfair */
+        .location-section .section-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-shadow: none;
+            font-weight: 700;
+        }
+
+        .loc-item {
+            margin-bottom: 60px; /* Больше пространства между пунктами */
+        }
+
+        .loc-name {
+            font-family: 'Ruslan Display', cursive;
+            font-size: clamp(20px, 6vw, 24px);
+            margin-bottom: 15px;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-shadow: 0.4px 0 0 var(--accent);
+            letter-spacing: 0.5px;
+        }
+
+        .loc-address {
+            font-family: 'Ruslan Display', cursive;
+            font-size: clamp(16px, 4.5vw, 19px);
+            line-height: 1.6;
+            opacity: 1;
+            letter-spacing: 0.5px;
+            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .swiper {
             width: 100%;
-            aspect-ratio: 4 / 3;
-            max-height: 300px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(128, 0, 0, 0.2);
+            aspect-ratio: 16 / 10; /* Сделали слайдер чуть шире визуально */
+            margin-bottom: 50px;
+            border: 1px solid rgba(128, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .loc-item {
-            margin-bottom: 35px;
-        }
-
-        .loc-name {
-            font-size: 20px;
-            margin-bottom: 8px;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
-
-        .loc-address {
-            font-family: 'Georgia', serif;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
+        /* АНКЕТА */
         .rsvp-section {
             background-color: var(--bg-light);
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: var(--accent);
             text-align: center;
         }
@@ -161,90 +167,56 @@
         .rsvp-form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 40px;
             text-align: left;
-            max-width: 400px;
+            max-width: 420px;
             margin: 0 auto;
-            font-family: 'Georgia', serif;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .companion-container {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s ease, opacity 0.4s ease;
-            opacity: 0;
-            overflow: hidden;
-        }
-
-        .companion-container.visible {
-            grid-template-rows: 1fr;
-            opacity: 1;
-        }
-
-        .companion-inner {
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .rsvp-form label {
-            font-weight: bold;
-            font-size: 15px;
+        .form-group label {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 15px;
+            text-shadow: 0.4px 0 0 var(--accent);
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 15px;
+            padding: 15px 5px;
             border: none;
-            border-bottom: 1px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
             background: transparent;
             color: var(--accent);
-            font-size: 16px;
+            font-family: 'Ruslan Display', cursive;
+            font-size: 18px;
             outline: none;
-        }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .radio-group label {
+            font-size: 17px;
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 12px;
             cursor: pointer;
-            font-weight: normal;
-        }
-
-        .radio-group input {
-            accent-color: var(--accent);
-            width: 20px;
-            height: 20px;
+            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .submit-btn {
             margin-top: 20px;
-            padding: 20px;
+            padding: 25px;
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
             font-family: 'Ruslan Display', cursive;
-            font-size: 18px;
+            font-size: 20px;
+            letter-spacing: 2px;
             cursor: pointer;
-            letter-spacing: 1px;
         }
 
         .playing .music-icon {
             animation: pulse 2s infinite ease-in-out;
-            border: 1px solid var(--accent);
         }
 
         @keyframes pulse {
@@ -272,6 +244,7 @@
 
     <section class="location-section">
         <h2 class="section-title">Место проведения</h2>
+        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="место1.jpeg" alt="Ратуша"></div>
@@ -285,10 +258,12 @@
             <div class="loc-name">Торжественная регистрация</div>
             <div class="loc-address">Ратуша<br>г. Несвиж, ул. Советская, 3</div>
         </div>
+        
         <div class="loc-item">
             <div class="loc-name">Шлюб</div>
             <div class="loc-address">Костёл «Божага цела»<br>г. Несвиж, ул. Гейсика</div>
         </div>
+        
         <div class="loc-item">
             <div class="loc-name">Банкет</div>
             <div class="loc-address">Ресторан «Трактир для друзей»<br>г. Городея, ул. Гагарина</div>
@@ -326,7 +301,6 @@
                 <div class="companion-inner">
                     <label>Имя спутника?</label>
                     <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
-                    <div style="height: 10px;"></div> 
                 </div>
             </div>
 
@@ -368,7 +342,6 @@
     function toggleCompanion(show) {
         const container = document.getElementById('compContainer');
         const inputField = document.getElementById('companion_name');
-        
         if (show) {
             container.classList.add('visible');
             inputField.setAttribute('required', 'required');
