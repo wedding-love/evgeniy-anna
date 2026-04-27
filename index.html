@@ -9,7 +9,7 @@
     <style>
         :root {
             --accent: #800000;
-            --bg-light: #fdfaf5;
+            --bg-light: #f9f2e2; /* Обновленный светлый фон */
         }
 
         * {
@@ -45,7 +45,7 @@
             background-size: cover;
         }
 
-        /* БЛОК 2: ИЗОБРАЖЕНИЕ 2.jpg */
+        /* БЛОКИ ИЗОБРАЖЕНИЙ */
         .image-block {
             width: 100%;
             line-height: 0;
@@ -57,7 +57,7 @@
             display: block;
         }
 
-        /* БЛОК ЛОКАЦИЙ (МЕЖДУ 2 И 3 ФОТО) */
+        /* БЛОК ЛОКАЦИЙ */
         .location-section {
             background-color: var(--bg-light);
             padding: 50px 20px;
@@ -102,7 +102,92 @@
             object-fit: cover;
         }
 
-        /* МУЗЫКА: Приклеена к 1 блоку */
+        /* АНКЕТА ГОСТЯ */
+        .rsvp-section {
+            background-color: var(--bg-light);
+            padding: 50px 20px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+            font-family: 'Georgia', serif;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-group label.question {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+            line-height: 1.3;
+        }
+
+        .rsvp-form input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            outline: none;
+            transition: border-width 0.2s;
+        }
+
+        .rsvp-form input[type="text"]:focus {
+            border-width: 2px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .radio-group label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: normal;
+        }
+        
+        .radio-group input[type="radio"] {
+            accent-color: var(--accent);
+            width: 18px;
+            height: 18px;
+        }
+
+        .submit-btn {
+            margin-top: 15px;
+            padding: 18px;
+            background-color: var(--accent);
+            color: var(--bg-light);
+            border: none;
+            font-family: 'Ruslan Display', cursive;
+            font-size: 18px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* МУЗЫКА */
         .music-control {
             position: absolute;
             bottom: 30px;
@@ -165,9 +250,7 @@
         </section>
 
         <section class="location-section">
-            <h2 class="section-title">Места проведения</h2>
-
-            <div class="swiper mySwiper">
+            <h2 class="section-title">Место</h2> <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="место1.jpeg" alt="Ратуша"></div>
                     <div class="swiper-slide"><img src="место2.jpeg" alt="Костёл"></div>
@@ -175,17 +258,14 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-
             <div class="loc-item">
                 <div class="loc-name">Торжественная регистрация</div>
                 <div class="loc-address">Ратуша<br>г. Несвиж, ул. Советская, 3</div>
             </div>
-
             <div class="loc-item">
                 <div class="loc-name">Шлюб</div>
                 <div class="loc-address">Костёл «Божага цела»<br>г. Несвиж, ул. Гейсика</div>
             </div>
-
             <div class="loc-item">
                 <div class="loc-name">Пир честной</div>
                 <div class="loc-address">Ресторан «Трактир для друзей»<br>г. Городея, ул. Гагарина</div>
@@ -194,6 +274,43 @@
 
         <section class="image-block">
             <img src="3.jpg" alt="Инфо 2">
+        </section>
+
+        <section class="image-block">
+            <img src="4.jpg" alt="Инфо 3: Пожелания и подарки">
+        </section>
+
+        <section class="rsvp-section">
+            <h2 class="section-title">Ответное слово</h2>
+            <form class="rsvp-form" action="#" method="POST">
+                <div class="form-group">
+                    <label class="question" for="guestName">Как величать вас? <br><span style="font-size: 12px; font-weight: normal;">(Напишите имя и фамилию)</span></label>
+                    <input type="text" id="guestName" name="guest_name" required placeholder="Ваш ответ...">
+                </div>
+                <div class="form-group">
+                    <label class="question">Сможете ли разделить с нами радость?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance" value="yes" required> Да, прибуду непременно</label>
+                        <label><input type="radio" name="attendance" value="no"> Увы, не смогу быть</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="question">Будет ли с вами еще кто-то?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="companion" value="no" required onchange="toggleCompanion(false)"> Нет, буду в одиночестве</label>
+                        <label><input type="radio" name="companion" value="yes" onchange="toggleCompanion(true)"> Да, буду не один</label>
+                    </div>
+                </div>
+                <div class="form-group" id="companionNameGroup" style="display: none;">
+                    <label class="question" for="companionName">Как величать ваших спутников?</label>
+                    <input type="text" id="companionName" name="companion_name" placeholder="Имена и фамилии...">
+                </div>
+                <button type="submit" class="submit-btn">Отправить весточку</button>
+            </form>
+        </section>
+
+        <section class="image-block">
+            <img src="5.jpg" alt="Контакты">
         </section>
     </div>
 
@@ -223,6 +340,19 @@
                 statusText.textContent = 'песнопения звучат';
             }
             isPlaying = !isPlaying;
+        }
+
+        function toggleCompanion(show) {
+            const companionGroup = document.getElementById('companionNameGroup');
+            const companionInput = document.getElementById('companionName');
+            if (show) {
+                companionGroup.style.display = 'flex';
+                companionInput.setAttribute('required', 'required');
+            } else {
+                companionGroup.style.display = 'none';
+                companionInput.removeAttribute('required');
+                companionInput.value = '';
+            }
         }
     </script>
 </body>
