@@ -82,10 +82,10 @@
 
         .music-text {
             color: var(--accent);
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
+            font-weight: bold;
             letter-spacing: 1.5px;
-            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .image-block {
@@ -100,66 +100,59 @@
             display: block;
         }
 
-        /* УВЕЛИЧЕННЫЙ БЛОК МЕСТО ПРОВЕДЕНИЯ */
         .location-section {
             background-color: var(--bg-light);
-            padding: 80px 30px; /* Увеличили вертикальные отступы */
+            padding: 60px 25px;
             text-align: center;
             color: var(--accent);
         }
 
         .section-title {
-            /* Шрифт как песнопения, но крупнее */
-            font-family: 'Ruslan Display', cursive;
-            font-size: clamp(28px, 9vw, 36px); 
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            text-shadow: 0.5px 0 0 var(--accent);
-        }
-
-        /* Специальное исключение для заголовка Место проведения, если нужно оставить Playfair */
-        .location-section .section-title {
+            /* Как просили: здесь шрифт НЕ как песнопения */
             font-family: 'Playfair Display', serif;
-            font-style: italic;
-            text-shadow: none;
+            font-size: clamp(24px, 7vw, 30px);
+            margin-bottom: 40px;
+            text-transform: uppercase;
             font-weight: 700;
+            font-style: italic;
         }
 
         .loc-item {
-            margin-bottom: 60px; /* Больше пространства между пунктами */
+            margin-bottom: 40px;
         }
 
         .loc-name {
             font-family: 'Ruslan Display', cursive;
-            font-size: clamp(20px, 6vw, 24px);
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 10px;
             text-decoration: underline;
-            text-underline-offset: 6px;
-            text-shadow: 0.4px 0 0 var(--accent);
-            letter-spacing: 0.5px;
+            text-underline-offset: 4px;
         }
 
         .loc-address {
-            font-family: 'Ruslan Display', cursive;
-            font-size: clamp(16px, 4.5vw, 19px);
-            line-height: 1.6;
-            opacity: 1;
-            letter-spacing: 0.5px;
-            text-shadow: 0.3px 0 0 var(--accent);
+            font-family: 'Forum', serif; /* Для адресов используем читаемую классику */
+            font-size: 16px;
+            line-height: 1.4;
+            opacity: 0.9;
         }
 
         .swiper {
             width: 100%;
-            aspect-ratio: 16 / 10; /* Сделали слайдер чуть шире визуально */
-            margin-bottom: 50px;
-            border: 1px solid rgba(128, 0, 0, 0.15);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            aspect-ratio: 4 / 3;
+            max-height: 300px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(128, 0, 0, 0.1);
         }
 
-        /* АНКЕТА */
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .rsvp-section {
             background-color: var(--bg-light);
-            padding: 80px 20px;
+            padding: 60px 20px;
             color: var(--accent);
             text-align: center;
         }
@@ -167,51 +160,49 @@
         .rsvp-form {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 25px;
             text-align: left;
-            max-width: 420px;
+            max-width: 400px;
             margin: 0 auto;
         }
 
         .form-group label {
-            font-size: 20px;
-            display: block;
-            margin-bottom: 15px;
-            text-shadow: 0.4px 0 0 var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            font-size: 17px;
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 15px 5px;
+            padding: 12px 5px;
             border: none;
-            border-bottom: 2px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
             background: transparent;
             color: var(--accent);
-            font-family: 'Ruslan Display', cursive;
+            font-family: 'Forum', serif;
             font-size: 18px;
             outline: none;
-            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .radio-group label {
-            font-size: 17px;
+            font-family: 'Forum', serif;
+            font-size: 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 10px;
+            margin-bottom: 5px;
             cursor: pointer;
-            text-shadow: 0.3px 0 0 var(--accent);
         }
 
         .submit-btn {
             margin-top: 20px;
-            padding: 25px;
+            padding: 20px;
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
             font-family: 'Ruslan Display', cursive;
-            font-size: 20px;
-            letter-spacing: 2px;
+            font-size: 18px;
+            letter-spacing: 1px;
             cursor: pointer;
         }
 
