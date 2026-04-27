@@ -10,8 +10,8 @@
 
     <style>
         :root {
-            --accent: #800000;      /* Глубокий красный */
-            --bg-light: #f5f3e5;    /* Бежевый фон */
+            --accent: #800000;
+            --bg-light: #f5f3e5;
         }
 
         * {
@@ -28,7 +28,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Контейнер приложения */
         .wrapper {
             width: 100%;
             max-width: 500px;
@@ -40,7 +39,6 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* БЛОК 1: ОБЛОЖКА */
         .block-one {
             width: 100%;
             height: 100dvh;
@@ -48,7 +46,6 @@
             background-size: cover;
         }
 
-        /* ПОЛОСКА С МУЗЫКОЙ (Строго между фото 1 и 2) */
         .music-strip {
             background-color: var(--bg-light);
             padding: 20px 0;
@@ -88,7 +85,6 @@
             opacity: 0.8;
         }
 
-        /* ИЗОБРАЖЕНИЯ-БЛОКИ */
         .image-block {
             width: 100%;
             line-height: 0;
@@ -100,7 +96,6 @@
             display: block;
         }
 
-        /* СЕКЦИЯ ЛОКАЦИЙ */
         .location-section {
             background-color: var(--bg-light);
             padding: 50px 20px;
@@ -169,6 +164,27 @@
             gap: 12px;
         }
 
+        /* ПЛАВНОЕ ПОЯВЛЕНИЕ ПОЛЯ СПУТНИКА */
+        .companion-container {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .companion-container.visible {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .companion-inner {
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .rsvp-form label {
             font-weight: bold;
             font-size: 15px;
@@ -217,7 +233,6 @@
             letter-spacing: 1px;
         }
 
-        /* АНИМАЦИЯ МУЗЫКИ */
         .playing .music-icon {
             animation: pulse 2s infinite ease-in-out;
             border: 1px solid var(--accent);
@@ -298,9 +313,11 @@
                 </div>
             </div>
 
-            <div class="form-group" id="compInput" style="display:none">
-                <label>Имя спутника?</label>
-                <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
+            <div class="companion-container" id="compContainer">
+                <div class="companion-inner">
+                    <label>Имя спутника?</label>
+                    <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
+                    <div style="height: 10px;"></div> </div>
             </div>
 
             <button type="submit" class="submit-btn">Отправить весточку</button>
@@ -314,14 +331,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Инициализация слайдера
     const swiper = new Swiper(".mySwiper", {
         loop: true,
         autoplay: { delay: 3500, disableOnInteraction: false },
         pagination: { el: ".swiper-pagination", clickable: true },
     });
 
-    // Музыкальный плеер
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
     const statusText = document.getElementById('statusText');
@@ -333,29 +348,27 @@
             btn.classList.remove('playing');
             statusText.textContent = 'включить песнопения';
         } else {
-            music.play().catch(e => console.log("Нужен клик для старта"));
+            music.play().catch(e => console.log("Нужен клик"));
             btn.classList.add('playing');
             statusText.textContent = 'песнопения звучат';
         }
         isPlaying = !isPlaying;
     }
 
-    // Логика анкеты (скрытие/показ спутника)
     function toggleCompanion(show) {
-        const inputDiv = document.getElementById('compInput');
+        const container = document.getElementById('compContainer');
         const inputField = document.getElementById('companion_name');
         
         if (show) {
-            inputDiv.style.display = 'flex';
+            container.classList.add('visible');
             inputField.setAttribute('required', 'required');
         } else {
-            inputDiv.style.display = 'none';
+            container.classList.remove('visible');
             inputField.removeAttribute('required');
             inputField.value = '';
         }
     }
 
-    // Отправка формы
     document.getElementById('weddingForm').onsubmit = function(e) {
         e.preventDefault();
         alert('Спасибо! Ваша весточка отправлена.');
