@@ -37,23 +37,32 @@
             flex-direction: column;
             min-height: 100vh;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            position: relative;
         }
 
+        /* БЛОК 1: Главное фото */
         .block-one {
             width: 100%;
-            height: 100dvh;
+            height: 100vh; /* Стабильная высота */
+            min-height: 560px;
             background: url('image.png') no-repeat center top;
             background-size: cover;
+            flex-shrink: 0;
         }
 
+        /* ПРИКЛЕЕННЫЙ БЛОК МУЗЫКИ */
         .music-strip {
             background-color: var(--bg-light);
-            padding: 20px 0;
+            padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            border-bottom: 1px solid rgba(128, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(128, 0, 0, 0.1);
+            position: sticky; /* Приклеивание */
+            top: 0;           /* Вплотную к верху */
+            z-index: 100;     /* Поверх остальных элементов */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .music-control {
@@ -61,33 +70,33 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .music-icon {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             fill: var(--accent);
             background: #fff;
             border-radius: 50%;
-            padding: 7px;
-            margin-bottom: 6px;
+            padding: 6px;
+            margin-bottom: 4px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             border: 1px solid rgba(128, 0, 0, 0.1);
         }
 
         .music-text {
             color: var(--accent);
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
             font-weight: bold;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             opacity: 0.8;
         }
 
         .image-block {
             width: 100%;
-            line-height: 0;
+            line-height: 0; /* Убирает микро-зазоры под фото */
         }
 
         .image-block img {
@@ -164,7 +173,6 @@
             gap: 12px;
         }
 
-        /* ПЛАВНОЕ ПОЯВЛЕНИЕ ПОЛЯ СПУТНИКА */
         .companion-container {
             display: grid;
             grid-template-rows: 0fr;
@@ -317,7 +325,8 @@
                 <div class="companion-inner">
                     <label>Имя спутника?</label>
                     <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
-                    <div style="height: 10px;"></div> </div>
+                    <div style="height: 10px;"></div>
+                </div>
             </div>
 
             <button type="submit" class="submit-btn">Отправить весточку</button>
@@ -348,7 +357,10 @@
             btn.classList.remove('playing');
             statusText.textContent = 'включить песнопения';
         } else {
-            music.play().catch(e => console.log("Нужен клик"));
+            music.play().catch(e => {
+                console.log("Автовоспроизведение заблокировано. Нужен клик.");
+                alert("Нажмите еще раз, чтобы зазвучала музыка");
+            });
             btn.classList.add('playing');
             statusText.textContent = 'песнопения звучат';
         }
