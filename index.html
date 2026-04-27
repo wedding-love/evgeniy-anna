@@ -2,152 +2,151 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение: Евгений и Анна</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Приглашение</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FDF9F3; 
-            --accent-color: #D10000; /* Чисто красный для ноты */
-            --brand-color: #A31D1D;  /* Глубокий красный для текста и орнамента */
+            --accent-color: #921a1a; 
+            --bg-color: #f4f1ea;
         }
 
         * {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
+        html {
+            scroll-behavior: smooth; /* Плавная прокрутка */
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Cormorant Infant', serif;
+            width: 100%;
+            background-color: var(--bg-color);
+            font-family: 'Ruslan Display', cursive;
+            overflow-x: hidden;
         }
 
-        .card {
-            background-color: var(--bg-color);
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            max-height: 850px;
-            position: relative;
+        .wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+            width: 100%;
         }
 
-        /* Орнамент: шире, в цвет текста и от самого верха */
-        .top-ornament {
+        .block {
+            position: relative;
             width: 100%;
-            height: 60px; /* Сделал шире */
-            background-image: url('орнамент.png'); 
-            background-repeat: repeat-x;
-            background-size: auto 100%; /* Растягиваем по высоте блока */
+            max-width: 500px;
+            height: 100vh;
+            height: 100dvh; /* Динамическая высота под мобильные */
+            background-size: cover;
             background-position: center top;
-            /* Фильтр для окрашивания картинки в цвет --brand-color */
-            filter: sepia(100%) saturate(500%) hue-rotate(320deg) brightness(70%);
-            margin-top: 0; /* В самом начале страницы */
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* Заголовок */
-        .logo-top {
-            margin-top: 2vh; 
-            color: var(--brand-color);
-            font-size: clamp(18px, 4vw, 22px);
-            letter-spacing: 6px;
-            font-weight: 300;
-            text-transform: uppercase;
+        /* Первый блок (Обложка) */
+        .first-block {
+            background-image: url('image.png');
         }
 
-        /* Имена */
-        .names-container {
-            margin-top: 2vh;
-            color: var(--brand-color);
-            font-size: clamp(34px, 9vw, 46px);
-            line-height: 1.1;
-            letter-spacing: 3px;
-            font-weight: 400;
-            text-transform: uppercase;
+        /* Второй блок (Чистое фото) */
+        .second-block {
+            background-image: url('2.jpg');
         }
 
-        .names-container span {
-            display: block;
-            font-size: 0.5em;
-            font-style: italic;
-            text-transform: lowercase;
-            margin: 2px 0;
-        }
-
-        /* Фото */
-        .photo-wrapper {
-            margin-top: 3vh; 
-            width: 80%;
-            height: 45vh; /* Чуть уменьшил, чтобы всё влезло без скролла */
-            max-height: 400px;
-        }
-
-        .couple-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Музыкальный блок */
-        .music-section {
-            margin-top: auto;
-            margin-bottom: 3vh;
+        /* Кнопка музыки на главном блоке */
+        .music-block {
+            position: absolute;
+            bottom: calc(30px + env(safe-area-inset-bottom)); 
+            left: 50%;
+            transform: translateX(-50%);
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+            user-select: none;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .music-block:active { 
+            transform: translateX(-50%) scale(0.95); 
         }
 
         .music-icon {
-            fill: var(--accent-color);
-            width: 24px;
-            height: 24px;
+            font-size: 28px;
+            color: var(--accent-color);
             margin-bottom: 5px;
         }
 
         .music-text {
-            color: var(--brand-color);
-            font-size: 13px;
-            letter-spacing: 3px;
+            color: var(--accent-color);
+            font-size: 14px;
             text-transform: uppercase;
-            font-weight: 400;
+            letter-spacing: 1px;
+            background: rgba(244, 241, 234, 0.5); /* Полупрозрачная подложка для читаемости */
+            padding: 2px 10px;
+            border-radius: 10px;
         }
 
+        /* Анимация пульсации */
+        .playing .music-icon {
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        #bg-music { 
+            display: none; 
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="top-ornament"></div>
-
-        <div class="logo-top">
-            ЖИЛИ-БЫЛИ
+    <div class="wrapper">
+        <div class="block first-block">
+            <div class="music-block" id="music-trigger">
+                <span class="music-icon">♪</span>
+                <span class="music-text" id="status-text">Включить песнопения</span>
+            </div>
         </div>
 
-        <div class="names-container">
-            ЕВГЕНИЙ
-            <span>да</span>
-            АННА
-        </div>
-
-        <div class="photo-wrapper">
-            <img src="ЕА.png" alt="Евгений и Анна" class="couple-photo">
-        </div>
-
-        <div class="music-section">
-            <svg class="music-icon" viewBox="0 0 24 24">
-                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-            </svg>
-            <div class="music-text">ВКЛЮЧИТЬ ПЕСНОПЕНИЯ</div>
-        </div>
+        <div class="block second-block"></div>
     </div>
 
+    <audio id="bg-music" src="песня.mp3" loop></audio>
+
+    <script>
+        const musicBlock = document.getElementById('music-trigger');
+        const music = document.getElementById('bg-music');
+        const statusText = document.getElementById('status-text');
+
+        musicBlock.addEventListener('click', function() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicBlock.classList.add('playing');
+                    statusText.textContent = 'Музыка звучит';
+                }).catch(err => {
+                    console.log("Автовоспроизведение требует взаимодействия пользователя");
+                });
+            } else {
+                music.pause();
+                musicBlock.classList.remove('playing');
+                statusText.textContent = 'Включить песнопения';
+            }
+        });
+    </script>
 </body>
 </html>
