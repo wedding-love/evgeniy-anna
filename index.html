@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Приглашение на свадьбу</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         :root {
-            --accent: #800000;
-            --bg-light: #f5f3e5;
+            --accent: #800000;      /* Глубокий красный */
+            --bg-light: #f5f3e5;    /* Бежевый фон */
         }
 
         * {
@@ -26,6 +28,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Контейнер приложения */
         .wrapper {
             width: 100%;
             max-width: 500px;
@@ -39,55 +42,53 @@
 
         /* БЛОК 1: ОБЛОЖКА */
         .block-one {
-            position: relative;
             width: 100%;
-            height: 100vh;
             height: 100dvh;
             background: url('image.png') no-repeat center top;
             background-size: cover;
         }
 
-        /* МУЗЫКАЛЬНАЯ КНОПКА (МАКСИМАЛЬНО НИЗКО) */
+        /* ПОЛОСКА С МУЗЫКОЙ (Строго между фото 1 и 2) */
+        .music-strip {
+            background-color: var(--bg-light);
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            border-bottom: 1px solid rgba(128, 0, 0, 0.05);
+        }
+
         .music-control {
-            position: absolute;
-            /* Установлено на самый минимум */
-            bottom: 2px; 
-            margin-bottom: env(safe-area-inset-bottom, 2px);
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 20;
             cursor: pointer;
-            width: 100%;
-            padding-bottom: 5px;
+            transition: transform 0.3s ease;
         }
 
         .music-icon {
-            width: clamp(24px, 7vw, 28px);
-            height: clamp(24px, 7vw, 28px);
+            width: 34px;
+            height: 34px;
             fill: var(--accent);
-            background: rgba(255, 255, 255, 0.85);
+            background: #fff;
             border-radius: 50%;
-            padding: 5px;
-            margin-bottom: 4px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            padding: 7px;
+            margin-bottom: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(128, 0, 0, 0.1);
         }
 
         .music-text {
             color: var(--accent);
-            font-size: clamp(8px, 2.5vw, 9px);
+            font-size: 10px;
             text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 3px 10px;
-            border-radius: 20px;
             font-weight: bold;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
+            opacity: 0.8;
         }
 
-        /* ИЗОБРАЖЕНИЯ */
+        /* ИЗОБРАЖЕНИЯ-БЛОКИ */
         .image-block {
             width: 100%;
             line-height: 0;
@@ -99,17 +100,17 @@
             display: block;
         }
 
-        /* ЛОКАЦИИ */
+        /* СЕКЦИЯ ЛОКАЦИЙ */
         .location-section {
             background-color: var(--bg-light);
-            padding: clamp(30px, 8vw, 50px) 20px;
+            padding: 50px 20px;
             text-align: center;
             color: var(--accent);
         }
 
         .section-title {
-            font-size: clamp(24px, 7vw, 32px);
-            margin-bottom: clamp(20px, 6vw, 30px);
+            font-size: clamp(24px, 7vw, 30px);
+            margin-bottom: 30px;
             text-transform: uppercase;
         }
 
@@ -117,8 +118,8 @@
             width: 100%;
             aspect-ratio: 4 / 3;
             max-height: 300px;
-            margin-bottom: 25px;
-            border: 2px solid var(--accent);
+            margin-bottom: 30px;
+            border: 1px solid rgba(128, 0, 0, 0.2);
         }
 
         .swiper-slide img {
@@ -128,26 +129,26 @@
         }
 
         .loc-item {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .loc-name {
-            font-size: clamp(18px, 5vw, 22px);
-            margin-bottom: 5px;
+            font-size: 20px;
+            margin-bottom: 8px;
             text-decoration: underline;
+            text-underline-offset: 4px;
         }
 
         .loc-address {
             font-family: 'Georgia', serif;
             font-size: 14px;
-            font-weight: bold;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         /* АНКЕТА */
         .rsvp-section {
             background-color: var(--bg-light);
-            padding: 40px 20px;
+            padding: 60px 20px;
             color: var(--accent);
             text-align: center;
         }
@@ -155,7 +156,7 @@
         .rsvp-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
             text-align: left;
             max-width: 400px;
             margin: 0 auto;
@@ -165,18 +166,19 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .question {
-            font-size: 16px;
+        .rsvp-form label {
             font-weight: bold;
+            font-size: 15px;
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 12px;
-            border: 1px solid var(--accent);
+            padding: 15px;
+            border: none;
+            border-bottom: 1px solid var(--accent);
             background: transparent;
             color: var(--accent);
             font-size: 16px;
@@ -186,67 +188,61 @@
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .radio-group label {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
+            font-weight: normal;
         }
 
         .radio-group input {
             accent-color: var(--accent);
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
         }
 
         .submit-btn {
-            margin-top: 10px;
-            padding: 18px;
+            margin-top: 20px;
+            padding: 20px;
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
             font-family: 'Ruslan Display', cursive;
             font-size: 18px;
             cursor: pointer;
+            letter-spacing: 1px;
         }
 
-        /* АНИМАЦИЯ ПУЛЬСАЦИИ */
+        /* АНИМАЦИЯ МУЗЫКИ */
         .playing .music-icon {
             animation: pulse 2s infinite ease-in-out;
+            border: 1px solid var(--accent);
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(128, 0, 0, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(128, 0, 0, 0); }
             100% { transform: scale(1); }
-        }
-
-        /* Специальная коррекция для невысоких экранов (iPhone 6/7/8/SE) */
-        @media (max-height: 670px) {
-            .music-control {
-                bottom: 0px; 
-                padding-bottom: 2px;
-            }
-            .music-icon {
-                margin-bottom: 2px;
-            }
         }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <section class="block-one">
+    <section class="block-one"></section>
+
+    <div class="music-strip">
         <div class="music-control" id="musicBtn" onclick="toggleMusic()">
             <svg class="music-icon" viewBox="0 0 24 24">
                 <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
             </svg>
             <span class="music-text" id="statusText">включить песнопения</span>
         </div>
-    </section>
+    </div>
 
     <section class="image-block"><img src="2.jpg" alt=""></section>
 
@@ -279,30 +275,34 @@
     <section class="image-block"><img src="4.jpg" alt=""></section>
 
     <section class="rsvp-section">
-        <h2 class="section-title">Ответное слово</h2>
+        <h2 class="section-title">Анкета гостя</h2>
         <form class="rsvp-form" id="weddingForm">
             <div class="form-group">
-                <label class="question">Как величать вас?</label>
+                <label>Как величать вас?</label>
                 <input type="text" name="guest_name" required placeholder="Ваш ответ...">
             </div>
+
             <div class="form-group">
-                <label class="question">Сможете ли разделить радость?</label>
+                <label>Сможете ли разделить радость?</label>
                 <div class="radio-group">
                     <label><input type="radio" name="attendance" value="yes" required> Да, прибуду</label>
                     <label><input type="radio" name="attendance" value="no"> Увы, не смогу</label>
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="question">Будете ли не один?</label>
+                <label>Будете ли не один?</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="companion" value="no" checked onclick="document.getElementById('compInput').style.display='none'"> Буду в одиночестве</label>
-                    <label><input type="radio" name="companion" value="yes" onclick="document.getElementById('compInput').style.display='flex'"> Буду со спутником</label>
+                    <label><input type="radio" name="companion" value="no" required onclick="toggleCompanion(false)"> Буду в одиночестве</label>
+                    <label><input type="radio" name="companion" value="yes" onclick="toggleCompanion(true)"> Буду со спутником</label>
                 </div>
             </div>
+
             <div class="form-group" id="compInput" style="display:none">
-                <label class="question">Имя спутника?</label>
-                <input type="text" name="companion_name" placeholder="Как величать спутника?">
+                <label>Имя спутника?</label>
+                <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
             </div>
+
             <button type="submit" class="submit-btn">Отправить весточку</button>
         </form>
     </section>
@@ -321,7 +321,7 @@
         pagination: { el: ".swiper-pagination", clickable: true },
     });
 
-    // Управление музыкой
+    // Музыкальный плеер
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
     const statusText = document.getElementById('statusText');
@@ -333,14 +333,29 @@
             btn.classList.remove('playing');
             statusText.textContent = 'включить песнопения';
         } else {
-            music.play().catch(e => console.log("Взаимодействие не зафиксировано браузером"));
+            music.play().catch(e => console.log("Нужен клик для старта"));
             btn.classList.add('playing');
             statusText.textContent = 'песнопения звучат';
         }
         isPlaying = !isPlaying;
     }
 
-    // Обработка формы (заглушка)
+    // Логика анкеты (скрытие/показ спутника)
+    function toggleCompanion(show) {
+        const inputDiv = document.getElementById('compInput');
+        const inputField = document.getElementById('companion_name');
+        
+        if (show) {
+            inputDiv.style.display = 'flex';
+            inputField.setAttribute('required', 'required');
+        } else {
+            inputDiv.style.display = 'none';
+            inputField.removeAttribute('required');
+            inputField.value = '';
+        }
+    }
+
+    // Отправка формы
     document.getElementById('weddingForm').onsubmit = function(e) {
         e.preventDefault();
         alert('Спасибо! Ваша весточка отправлена.');
