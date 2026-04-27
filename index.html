@@ -2,132 +2,228 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Приглашение</title>
     <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         :root {
-            --accent-color: #921a1a; 
-            --bg-color: #f4f1ea;
+            --accent: #800000;
+            --bg-light: #fdfaf5;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
 
         body, html {
             width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
+            background-color: #000;
             font-family: 'Ruslan Display', cursive;
-            overflow: hidden; 
+            scroll-behavior: smooth;
         }
 
         .wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-            height: 100dvh; 
-        }
-
-        .main-block {
-            position: relative;
             width: 100%;
             max-width: 500px;
-            height: 100%;
-            background-image: url('image.png'); 
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Кнопка музыки — ОПУЩЕНА НИЖЕ */
-        .music-block {
+        /* БЛОК 1: ОБЛОЖКА */
+        .block-one {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            background: url('image.png') no-repeat center top;
+            background-size: cover;
+        }
+
+        /* БЛОК 2: ИЗОБРАЖЕНИЕ 2.jpg */
+        .image-block {
+            width: 100%;
+            line-height: 0;
+        }
+
+        .image-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* БЛОК ЛОКАЦИЙ (МЕЖДУ 2 И 3 ФОТО) */
+        .location-section {
+            background-color: var(--bg-light);
+            padding: 50px 20px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .loc-item {
+            margin-bottom: 35px;
+        }
+
+        .loc-name {
+            font-size: 22px;
+            margin-bottom: 8px;
+            text-decoration: underline;
+        }
+
+        .loc-address {
+            font-family: 'Georgia', serif;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        /* СЛАЙДЕР */
+        .swiper {
+            width: 100%;
+            height: 250px;
+            margin: 20px 0;
+            border: 2px solid var(--accent);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* МУЗЫКА: Приклеена к 1 блоку */
+        .music-control {
             position: absolute;
-            /* Изменено с 40px на 15px для максимального спуска вниз */
-            bottom: calc(15px + env(safe-area-inset-bottom)); 
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            user-select: none;
+            z-index: 20;
+            cursor: pointer;
             text-align: center;
-            z-index: 10;
-            width: 100%;
         }
 
         .music-icon {
-            font-size: 32px;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+            width: 30px;
+            height: 30px;
+            fill: var(--accent);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 6px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .music-text {
-            color: var(--accent-color);
-            font-size: 13px;
+            color: var(--accent);
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 4px 14px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 14px;
             border-radius: 20px;
             font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .playing .music-icon {
-            animation: pulse 1.5s infinite ease-in-out;
+            animation: pulse 2s infinite ease-in-out;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-
-        #bg-music { display: none; }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <div class="main-block">
-            <div class="music-block" id="music-trigger">
-                <span class="music-icon">♪</span>
-                <span class="music-text" id="status-text">Включить песнопения</span>
+        <section class="block-one">
+            <div class="music-control" id="musicBtn" onclick="toggleMusic()">
+                <svg class="music-icon" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <span class="music-text" id="statusText">включить песнопения</span>
             </div>
-        </div>
+        </section>
+
+        <section class="image-block">
+            <img src="2.jpg" alt="Инфо 1">
+        </section>
+
+        <section class="location-section">
+            <h2 class="section-title">Места проведения</h2>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="место1.jpeg" alt="Ратуша"></div>
+                    <div class="swiper-slide"><img src="место2.jpeg" alt="Костёл"></div>
+                    <div class="swiper-slide"><img src="место3.jpeg" alt="Ресторан"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="loc-item">
+                <div class="loc-name">Торжественная регистрация</div>
+                <div class="loc-address">Ратуша<br>г. Несвиж, ул. Советская, 3</div>
+            </div>
+
+            <div class="loc-item">
+                <div class="loc-name">Шлюб</div>
+                <div class="loc-address">Костёл «Божага цела»<br>г. Несвиж, ул. Гейсика</div>
+            </div>
+
+            <div class="loc-item">
+                <div class="loc-name">Пир честной</div>
+                <div class="loc-address">Ресторан «Трактир для друзей»<br>г. Городея, ул. Гагарина</div>
+            </div>
+        </section>
+
+        <section class="image-block">
+            <img src="3.jpg" alt="Инфо 2">
+        </section>
     </div>
 
-    <audio id="bg-music" src="песня.mp3" loop></audio>
+    <audio id="bgMusic" src="песня.mp3" loop></audio>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const musicBlock = document.getElementById('music-trigger');
-        const music = document.getElementById('bg-music');
-        const statusText = document.getElementById('status-text');
-
-        musicBlock.addEventListener('click', function() {
-            if (music.paused) {
-                music.play().then(() => {
-                    musicBlock.classList.add('playing');
-                    statusText.textContent = 'Музыка звучит';
-                }).catch(err => {
-                    console.log("Нужен клик для запуска музыки");
-                });
-            } else {
-                music.pause();
-                musicBlock.classList.remove('playing');
-                statusText.textContent = 'Включить песнопения';
-            }
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: { delay: 3000 },
+            pagination: { el: ".swiper-pagination", clickable: true },
         });
+
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicBtn');
+        const statusText = document.getElementById('statusText');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                btn.classList.remove('playing');
+                statusText.textContent = 'включить песнопения';
+            } else {
+                music.play().catch(e => console.log("Нужен клик"));
+                btn.classList.add('playing');
+                statusText.textContent = 'песнопения звучат';
+            }
+            isPlaying = !isPlaying;
+        }
     </script>
 </body>
 </html>
