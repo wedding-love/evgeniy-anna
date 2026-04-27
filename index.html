@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение: Евгений и Анна</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDF9F3; 
+            --accent-color: #D10000; /* Чисто красный для ноты */
+            --brand-color: #A31D1D;  /* Глубокий красный для текста и орнамента */
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Cormorant Infant', serif;
+        }
+
+        .card {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            max-height: 850px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+        }
+
+        /* Орнамент: шире, в цвет текста и от самого верха */
+        .top-ornament {
+            width: 100%;
+            height: 60px; /* Сделал шире */
+            background-image: url('орнамент.png'); 
+            background-repeat: repeat-x;
+            background-size: auto 100%; /* Растягиваем по высоте блока */
+            background-position: center top;
+            /* Фильтр для окрашивания картинки в цвет --brand-color */
+            filter: sepia(100%) saturate(500%) hue-rotate(320deg) brightness(70%);
+            margin-top: 0; /* В самом начале страницы */
+        }
+
+        /* Заголовок */
+        .logo-top {
+            margin-top: 2vh; 
+            color: var(--brand-color);
+            font-size: clamp(18px, 4vw, 22px);
+            letter-spacing: 6px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        /* Имена */
+        .names-container {
+            margin-top: 2vh;
+            color: var(--brand-color);
+            font-size: clamp(34px, 9vw, 46px);
+            line-height: 1.1;
+            letter-spacing: 3px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .names-container span {
+            display: block;
+            font-size: 0.5em;
+            font-style: italic;
+            text-transform: lowercase;
+            margin: 2px 0;
+        }
+
+        /* Фото */
+        .photo-wrapper {
+            margin-top: 3vh; 
+            width: 80%;
+            height: 45vh; /* Чуть уменьшил, чтобы всё влезло без скролла */
+            max-height: 400px;
+        }
+
+        .couple-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Музыкальный блок */
+        .music-section {
+            margin-top: auto;
+            margin-bottom: 3vh;
+            cursor: pointer;
+        }
+
+        .music-icon {
+            fill: var(--accent-color);
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+
+        .music-text {
+            color: var(--brand-color);
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="top-ornament"></div>
+
+        <div class="logo-top">
+            ЖИЛИ-БЫЛИ
+        </div>
+
+        <div class="names-container">
+            ЕВГЕНИЙ
+            <span>да</span>
+            АННА
+        </div>
+
+        <div class="photo-wrapper">
+            <img src="ЕА.png" alt="Евгений и Анна" class="couple-photo">
+        </div>
+
+        <div class="music-section">
+            <svg class="music-icon" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+            <div class="music-text">ВКЛЮЧИТЬ ПЕСНОПЕНИЯ</div>
+        </div>
+    </div>
+
+</body>
+</html>
