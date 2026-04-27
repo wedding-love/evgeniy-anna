@@ -100,48 +100,32 @@
             display: block;
         }
 
+        /* ОБНОВЛЕННЫЙ БЛОК МЕСТО ПРОВЕДЕНИЯ */
         .location-section {
             background-color: var(--bg-light);
-            padding: 60px 25px;
+            padding: 60px 20px;
             text-align: center;
             color: var(--accent);
         }
 
         .section-title {
-            /* Как просили: здесь шрифт НЕ как песнопения */
             font-family: 'Playfair Display', serif;
-            font-size: clamp(24px, 7vw, 30px);
+            font-size: clamp(28px, 8vw, 34px);
             margin-bottom: 40px;
             text-transform: uppercase;
             font-weight: 700;
             font-style: italic;
         }
 
-        .loc-item {
-            margin-bottom: 40px;
-        }
-
-        .loc-name {
-            font-family: 'Ruslan Display', cursive;
-            font-size: 22px;
-            margin-bottom: 10px;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
-
-        .loc-address {
-            font-family: 'Forum', serif; /* Для адресов используем читаемую классику */
-            font-size: 16px;
-            line-height: 1.4;
-            opacity: 0.9;
-        }
-
         .swiper {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            max-height: 300px;
-            margin-bottom: 40px;
+            width: 90%;
+            /* Делаем фото более вертикальными (3:4 вместо 4:3) */
+            aspect-ratio: 3 / 4; 
+            max-height: 500px;
+            margin: 0 auto 50px auto;
             border: 1px solid rgba(128, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
         .swiper-slide img {
@@ -150,6 +134,31 @@
             object-fit: cover;
         }
 
+        .loc-item {
+            margin-bottom: 50px;
+            padding: 0 10px;
+        }
+
+        .loc-name {
+            font-family: 'Ruslan Display', cursive;
+            /* Увеличено в 2 раза от исходного (было ~20-22px) */
+            font-size: clamp(28px, 7vw, 32px); 
+            margin-bottom: 15px;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            line-height: 1.2;
+        }
+
+        .loc-address {
+            font-family: 'Forum', serif;
+            /* Увеличено (было 16px) */
+            font-size: clamp(20px, 5vw, 24px); 
+            line-height: 1.5;
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        /* АНКЕТА */
         .rsvp-section {
             background-color: var(--bg-light);
             padding: 60px 20px;
@@ -204,6 +213,17 @@
             font-size: 18px;
             letter-spacing: 1px;
             cursor: pointer;
+        }
+
+        /* Стили для анкеты гостя (скрытый блок) */
+        .companion-container {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .companion-container.visible {
+            display: flex;
         }
 
         .playing .music-icon {
@@ -289,10 +309,8 @@
             </div>
 
             <div class="companion-container" id="compContainer">
-                <div class="companion-inner">
-                    <label>Имя спутника?</label>
-                    <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
-                </div>
+                <label style="font-family: 'Playfair Display', serif; font-weight: bold; font-size: 17px;">Имя спутника?</label>
+                <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
             </div>
 
             <button type="submit" class="submit-btn">Отправить весточку</button>
@@ -323,7 +341,7 @@
             btn.classList.remove('playing');
             statusText.textContent = 'включить песнопения';
         } else {
-            music.play().catch(e => console.log("Нужен клик"));
+            music.play().catch(e => console.log("Нужен клик пользователя"));
             btn.classList.add('playing');
             statusText.textContent = 'песнопения звучат';
         }
