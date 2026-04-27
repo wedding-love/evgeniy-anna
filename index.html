@@ -12,6 +12,7 @@
         :root {
             --accent: #800000;
             --bg-light: #f2f1df; 
+            --bg-form: #f7f0e0; /* Новый фон для анкеты */
         }
 
         * {
@@ -100,7 +101,7 @@
             display: block;
         }
 
-        /* ОБНОВЛЕННЫЙ БЛОК МЕСТО ПРОВЕДЕНИЯ */
+        /* БЛОК МЕСТО ПРОВЕДЕНИЯ */
         .location-section {
             background-color: var(--bg-light);
             padding: 60px 20px;
@@ -119,7 +120,6 @@
 
         .swiper {
             width: 90%;
-            /* Делаем фото более вертикальными (3:4 вместо 4:3) */
             aspect-ratio: 3 / 4; 
             max-height: 500px;
             margin: 0 auto 50px auto;
@@ -141,7 +141,6 @@
 
         .loc-name {
             font-family: 'Ruslan Display', cursive;
-            /* Увеличено в 2 раза от исходного (было ~20-22px) */
             font-size: clamp(28px, 7vw, 32px); 
             margin-bottom: 15px;
             text-decoration: underline;
@@ -151,16 +150,15 @@
 
         .loc-address {
             font-family: 'Forum', serif;
-            /* Увеличено (было 16px) */
             font-size: clamp(20px, 5vw, 24px); 
             line-height: 1.5;
             opacity: 1;
             font-weight: 500;
         }
 
-        /* АНКЕТА */
+        /* АНКЕТА С НОВЫМ ФОНОМ */
         .rsvp-section {
-            background-color: var(--bg-light);
+            background-color: var(--bg-form); /* Изменено на f7f0e0 */
             padding: 60px 20px;
             color: var(--accent);
             text-align: center;
@@ -215,7 +213,6 @@
             cursor: pointer;
         }
 
-        /* Стили для анкеты гостя (скрытый блок) */
         .companion-container {
             display: none;
             flex-direction: column;
@@ -341,7 +338,7 @@
             btn.classList.remove('playing');
             statusText.textContent = 'включить песнопения';
         } else {
-            music.play().catch(e => console.log("Нужен клик пользователя"));
+            music.play().catch(e => console.log("Нужен клик"));
             btn.classList.add('playing');
             statusText.textContent = 'песнопения звучат';
         }
