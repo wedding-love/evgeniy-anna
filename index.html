@@ -2,19 +2,22 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Приглашение</title>
     <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent-color: #921a1a; 
             --bg-color: #f4f1ea;
-            --safe-bottom: env(safe-area-inset-bottom, 20px);
         }
 
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body, html {
@@ -23,128 +26,82 @@
             width: 100%;
             background-color: var(--bg-color);
             font-family: 'Ruslan Display', cursive;
-            overflow: hidden; /* Убираем скролл у body */
-            height: 100%;
+            overflow-x: hidden;
         }
 
-        /* Основной контейнер со скроллом */
         .wrapper {
-            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch; /* Для мягкого скролла на iOS */
         }
 
         .block {
             position: relative;
             width: 100%;
-            height: 100vh;
-            /* fallback для старых браузеров */
-            height: 100dvh;
-            scroll-snap-align: start;
+            max-width: 500px;
+            /* Используем динамическую высоту */
+            min-height: 100vh;
+            min-height: 100dvh; 
+            
+            /* --- ОПТИМИЗАЦИЯ ФОТО --- */
+            background-size: cover; /* Заполняет блок полностью */
+            background-position: center center; /* Центрирует изображение */
+            background-repeat: no-repeat;
+            
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            overflow: hidden; /* Чтобы псевдоэлемент не вылезал */
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* Псевдоэлемент для идеального позиционирования фона */
-        .block::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 0;
-            /* Препятствует смещению фона при появлении клавиатуры и т.д. */
-            background-attachment: scroll; 
-        }
+        /* Блоки с изображениями */
+        .first-block { background-image: url('image.png'); }
+        .second-block { background-image: url('2.jpg'); }
+        .third-block { background-image: url('3.jpg'); }
+        .fourth-block { background-image: url('4.jpg'); }
 
-        /* Первый блок (Обложка) */
-        .first-block::before {
-            background-image: url('image.png');
-        }
-
-        /* Второй блок (Чистое фото) */
-        .second-block::before {
-            background-image: url('2.jpg');
-        }
-
-        /* Кнопка музыки на главном блоке */
+        /* Музыкальный блок */
         .music-block {
             position: absolute;
-            bottom: calc(30px + var(--safe-bottom)); 
+            bottom: calc(30px + env(safe-area-inset-bottom)); 
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease;
-            user-select: none;
-            text-align: center;
             z-index: 10;
-            /* Гарантирует, что кнопка не сольется с фоном */
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-        }
-
-        /* Состояние касания для мобильных */
-        .music-block:active { 
-            transform: translateX(-50%) scale(0.95); 
         }
 
         .music-icon {
-            font-size: clamp(24px, 8vw, 32px);
+            font-size: 28px;
             color: var(--accent-color);
             margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(244, 241, 234, 0.8);
-            transition: transform 0.2s ease;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
         }
 
         .music-text {
             color: var(--accent-color);
-            font-size: clamp(12px, 4vw, 16px);
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
             background: rgba(244, 241, 234, 0.7);
-            padding: 4px 16px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            white-space: nowrap;
-            border: 1px solid rgba(146, 26, 26, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: bold;
         }
 
-        /* Анимация пульсации */
         .playing .music-icon {
             animation: pulse 1.5s infinite ease-in-out;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.4); }
+            50% { transform: scale(1.3); }
             100% { transform: scale(1); }
         }
 
-        #bg-music { 
-            display: none; 
-        }
-
-        /* Убираем возможные отступы на старых iOS */
-        @supports (padding: max(0px)) {
-            .block {
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
-            }
-        }
+        #bg-music { display: none; }
     </style>
 </head>
 <body>
@@ -156,64 +113,29 @@
                 <span class="music-text" id="status-text">Включить песнопения</span>
             </div>
         </div>
-
         <div class="block second-block"></div>
+        <div class="block third-block"></div>
+        <div class="block fourth-block"></div>
     </div>
 
-    <audio id="bg-music" src="песня.mp3" loop preload="auto"></audio>
+    <audio id="bg-music" src="песня.mp3" loop></audio>
 
     <script>
         const musicBlock = document.getElementById('music-trigger');
         const music = document.getElementById('bg-music');
         const statusText = document.getElementById('status-text');
 
-        // Проверяем, не играет ли уже музыка (на случай, если страница перезагрузилась)
-        if (!music.paused) {
-            musicBlock.classList.add('playing');
-            statusText.textContent = 'Музыка звучит';
-        }
-
-        musicBlock.addEventListener('click', function(event) {
-            // Предотвращаем возможные баблинги, если кнопка окажется внутри другого интерактивного элемента
-            event.stopPropagation();
-            
+        musicBlock.addEventListener('click', function() {
             if (music.paused) {
-                // Используем play с проверкой на ошибки
-                const playPromise = music.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        musicBlock.classList.add('playing');
-                        statusText.textContent = 'Музыка звучит';
-                    }).catch(error => {
-                        // Автовоспроизведение без жеста пользователя может быть заблокировано,
-                        // но здесь у нас как раз жест (click), так что это fallback.
-                        console.log("Воспроизведение не удалось: ", error);
-                        // Пробуем «разбудить» аудиоконтекст еще раз
-                        alert("Пожалуйста, нажмите на кнопку еще раз, чтобы начать музыку.");
-                    });
-                }
+                music.play().then(() => {
+                    musicBlock.classList.add('playing');
+                    statusText.textContent = 'Музыка звучит';
+                }).catch(err => console.log("Нужен клик для запуска"));
             } else {
                 music.pause();
                 musicBlock.classList.remove('playing');
                 statusText.textContent = 'Включить песнопения';
             }
-        });
-
-        // Дополнительная страховка для iOS: иногда Safari теряет контекст воспроизведения.
-        // Если музыка остановилась по внешней причине, сбрасываем статус.
-        music.addEventListener('pause', function() {
-            if (music.currentTime > 0 && !music.ended) {
-                // Если пауза была не из-за нажатия на кнопку (например, звонок), 
-                // то пользователь может нажать еще раз, чтобы возобновить.
-                // Но текст остается "Звучит", пока пользователь сам не кликнет.
-            }
-        });
-
-        // Обработчик на случай, если трек закончился (хотя он loop, на всякий случай)
-        music.addEventListener('ended', function() {
-            musicBlock.classList.remove('playing');
-            statusText.textContent = 'Включить песнопения';
         });
     </script>
 </body>
