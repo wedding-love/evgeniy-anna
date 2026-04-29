@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Приглашение на свадьбу</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Forum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
         :root {
-            --accent: #800000;
+            --accent: #800000; 
             --bg-light: #f2f1df; 
-            --bg-form: #f7f0e0;
+            --bg-form: #f7f0e0; 
+            --font-main: 'Forum', serif;
+            --font-accent: 'Playfair Display', serif;
         }
 
         * {
@@ -25,9 +27,10 @@
         body, html {
             width: 100%;
             background-color: #000;
-            font-family: 'Ruslan Display', cursive;
+            font-family: var(--font-main);
             scroll-behavior: smooth;
             overflow-x: hidden; 
+            color: var(--accent);
         }
 
         .wrapper {
@@ -38,26 +41,25 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
+        /* ГЛАВНЫЙ БЛОК НА ВЕСЬ ЭКРАН */
         .block-one {
             width: 100%;
             height: 100vh; 
-            background: url('image.png') no-repeat center top;
+            background: url('1.jpg') no-repeat center center;
             background-size: cover;
+            position: relative;
         }
 
         .music-strip {
             background-color: var(--bg-light);
-            padding: 25px 0;
+            padding: 12px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-top: 1px solid rgba(128, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(128, 0, 0, 0.05);
-            position: relative;
-            z-index: 5;
+            border-bottom: 1px solid rgba(128, 0, 0, 0.1);
         }
 
         .music-control {
@@ -68,158 +70,234 @@
         }
 
         .music-icon {
-            width: 34px; height: 34px;
+            width: 24px;
+            height: 24px;
             fill: var(--accent);
-            background: #fff;
-            border-radius: 50%;
-            padding: 7px;
-            margin-bottom: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 4px;
         }
 
         .music-text {
-            color: var(--accent);
-            font-size: 10px;
+            font-size: 11px;
             text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
         }
 
-        .image-block { width: 100%; line-height: 0; margin-top: -1px; }
-        .image-block img { width: 100%; height: auto; display: block; }
-
-        /* МЕСТО ПРОВЕДЕНИЯ */
-        .location-section {
-            background-color: var(--bg-light);
-            padding: 60px 20px;
-            text-align: center;
-            color: var(--accent);
+        .image-block img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(28px, 8vw, 34px);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            font-weight: 700;
-            font-style: italic;
-        }
-
-        .swiper {
-            width: 90%;
-            aspect-ratio: 3 / 4; 
-            max-height: 500px;
-            margin: 0 auto 50px auto;
-            border: 1px solid rgba(128, 0, 0, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-
-        .loc-item { margin-bottom: 50px; padding: 0 10px; }
-        .loc-name {
-            font-family: 'Ruslan Display', cursive;
-            font-size: clamp(28px, 7vw, 32px); 
+            font-size: clamp(20px, 6vw, 26px);
+            text-align: center;
             margin-bottom: 15px;
-            text-decoration: underline;
-            text-underline-offset: 6px;
-        }
-        .loc-address {
-            font-family: 'Forum', serif;
-            font-size: clamp(20px, 5vw, 24px); 
-            line-height: 1.5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 10px;
         }
 
-        /* ОБНОВЛЕННАЯ АНКЕТА */
-        .rsvp-section {
-            background-color: var(--bg-form);
-            padding: 80px 25px;
-            color: var(--accent);
+        /* КАЛЕНДАРЬ */
+        .calendar-section {
+            padding: 25px 15px;
+        }
+
+        .calendar-container {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            border: 1px solid var(--accent);
+            padding: 15px 10px;
+        }
+
+        .calendar-month {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
             text-align: center;
         }
 
+        .day-name {
+            font-size: 11px;
+            padding-bottom: 8px;
+        }
+
+        .day-number {
+            font-size: 16px;
+            padding: 6px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-number.target {
+            color: #fff;
+        }
+
+        .day-number.target::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23800000'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* МЕСТО ПРОВЕДЕНИЯ АДАПТИВНОЕ */
+        .location-section {
+            padding: 25px 15px;
+        }
+
+        .swiper {
+            width: 100%;
+            aspect-ratio: 3/2; /* Прямоугольный формат фото */
+            margin-bottom: 20px;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .loc-item {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .loc-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .loc-address {
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .city-highlight {
+            display: block;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 17px;
+            margin-bottom: 2px;
+        }
+
+        /* АНКЕТА ГOСТЯ */
+        .rsvp-section {
+            background-color: var(--bg-form);
+            padding: 35px 15px;
+        }
+
         .rsvp-form {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 45px; /* Увеличен отступ между вопросами */
-            text-align: left;
-            max-width: 400px;
-            margin: 0 auto;
+            gap: 20px;
         }
 
         .form-group label {
+            font-size: 18px;
             display: block;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-            font-size: 22px; /* Увеличен шрифт вопроса */
-            margin-bottom: 15px; /* Отступ от вопроса до поля/кнопок */
+            margin-bottom: 8px;
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 12px 5px;
+            padding: 8px 0;
             border: none;
             border-bottom: 1px solid var(--accent);
             background: transparent;
             color: var(--accent);
-            font-family: 'Forum', serif;
-            font-size: 22px; /* Увеличен шрифт ввода текста */
+            font-family: var(--font-main);
+            font-size: 16px;
             outline: none;
         }
 
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
         .radio-group label {
-            font-family: 'Forum', serif;
-            font-size: 20px; /* Увеличен шрифт вариантов ответа */
-            font-weight: normal;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 0;
-            cursor: pointer;
-        }
-
-        .radio-group input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--accent);
+            gap: 10px;
+            font-size: 16px;
+            margin-bottom: 6px;
         }
 
         .submit-btn {
-            margin-top: 30px;
-            padding: 22px;
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
-            font-family: 'Ruslan Display', cursive;
-            font-size: 20px;
+            padding: 15px;
+            font-family: var(--font-main);
+            font-size: 16px;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: pointer;
-            transition: opacity 0.3s;
+            margin-top: 10px;
         }
 
-        .companion-container {
-            display: none;
-            flex-direction: column;
-            margin-top: 20px;
+        /* ФИНАЛЬНЫЙ БЛОК */
+        .final-section {
+            padding: 35px 15px 40px;
+            text-align: center;
+            background-color: var(--bg-light);
         }
-        .companion-container.visible { display: flex; }
 
-        .playing .music-icon {
-            animation: pulse 2s infinite ease-in-out;
+        .story-text {
+            font-size: 17px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .timer-unit .val {
+            font-size: 28px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--accent);
+            display: block;
+        }
+
+        .timer-unit .lab {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* КРАСИВАЯ ПОДПИСЬ */
+        .signature {
+            font-family: var(--font-accent);
+            font-size: clamp(22px, 6.5vw, 28px);
+            font-style: italic;
+            color: var(--accent);
+            margin-top: 10px;
+            white-space: nowrap;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(128, 0, 0, 0.4); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(128, 0, 0, 0); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
+        .playing .music-icon { animation: pulse 2s infinite ease-in-out; }
     </style>
 </head>
 <body>
@@ -232,11 +310,25 @@
             <svg class="music-icon" viewBox="0 0 24 24">
                 <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
             </svg>
-            <span class="music-text" id="statusText">включить песнопения</span>
+            <span class="music-text" id="statusText">включить музыку</span>
         </div>
     </div>
 
     <section class="image-block"><img src="2.jpg" alt=""></section>
+
+    <section class="calendar-section">
+        <h2 class="section-title">День торжества</h2>
+        <div class="calendar-container">
+            <div class="calendar-month">Август 2026</div>
+            <div class="calendar-grid">
+                <div class="day-name">Пн</div><div class="day-name">Вт</div><div class="day-name">Ср</div><div class="day-name">Чт</div><div class="day-name">Пт</div><div class="day-name">Сб</div><div class="day-name">Вс</div>
+                <div class="day-number"></div><div class="day-number"></div><div class="day-number"></div><div class="day-number"></div><div class="day-number"></div>
+                <div class="day-number target">1</div><div class="day-number">2</div>
+                <div class="day-number">3</div><div class="day-number">4</div><div class="day-number">5</div><div class="day-number">6</div><div class="day-number">7</div><div class="day-number">8</div><div class="day-number">9</div>
+                <div class="day-number">10</div><div class="day-number">11</div><div class="day-number">12</div><div class="day-number">13</div><div class="day-number">14</div><div class="day-number">15</div><div class="day-number">16</div>
+            </div>
+        </div>
+    </section>
 
     <section class="location-section">
         <h2 class="section-title">Место проведения</h2>
@@ -246,20 +338,19 @@
                 <div class="swiper-slide"><img src="место2.jpeg" alt="Костёл"></div>
                 <div class="swiper-slide"><img src="место3.jpeg" alt="Ресторан"></div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
 
         <div class="loc-item">
-            <div class="loc-name">Торжественная регистрация</div>
-            <div class="loc-address">Ратуша<br>г. Несвиж, ул. Советская, 3</div>
+            <div class="loc-name">Регистрация</div>
+            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>Ратуша, ул. Советская, 3</div>
         </div>
         <div class="loc-item">
             <div class="loc-name">Шлюб</div>
-            <div class="loc-address">Костёл «Божага цела»<br>г. Несвиж, ул. Гейсика</div>
+            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>Костёл «Божага цела»</div>
         </div>
         <div class="loc-item">
             <div class="loc-name">Банкет</div>
-            <div class="loc-address">Ресторан «Трактир для друзей»<br>г. Городея, ул. Гагарина</div>
+            <div class="loc-address"><span class="city-highlight">г. Городея</span>Ресторан «Трактир для друзей»</div>
         </div>
     </section>
 
@@ -270,83 +361,63 @@
         <h2 class="section-title">Анкета гостя</h2>
         <form class="rsvp-form" id="weddingForm">
             <div class="form-group">
-                <label>Как величать вас?</label>
-                <input type="text" name="guest_name" required placeholder="Ваш ответ...">
+                <label>Как к вам обращаться?</label>
+                <input type="text" name="guest_name" required placeholder="Ваше имя...">
             </div>
-
             <div class="form-group">
-                <label>Сможете ли разделить радость?</label>
+                <label>Придете ли вы?</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="attendance" value="yes" required> Да, прибуду</label>
-                    <label><input type="radio" name="attendance" value="no"> Увы, не смогу</label>
+                    <label><input type="radio" name="attendance" value="yes" required> Да, с радостью</label>
+                    <label><input type="radio" name="attendance" value="no"> К сожалению, нет</label>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label>Будете ли не один?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="companion" value="no" required onclick="toggleCompanion(false)"> Буду в одиночестве</label>
-                    <label><input type="radio" name="companion" value="yes" onclick="toggleCompanion(true)"> Буду со спутником</label>
-                </div>
-            </div>
-
-            <div class="companion-container" id="compContainer">
-                <label>Имя спутника?</label>
-                <input type="text" name="companion_name" id="companion_name" placeholder="Введите имя...">
-            </div>
-
-            <button type="submit" class="submit-btn">Отправить весточку</button>
+            <button type="submit" class="submit-btn">Отправить ответ</button>
         </form>
     </section>
 
     <section class="image-block"><img src="5.jpg" alt=""></section>
+
+    <section class="final-section">
+        <div class="story-text">ДОЛГО ЛИ, КОРОТКО ЛИ,<br>А ДЕЛО К ПРАЗДНИКУ ШЛО...</div>
+        <div class="timer-display" id="timer">
+            <div class="timer-unit"><span class="val" id="d">00</span><span class="lab">дней</span></div>
+            <div class="timer-unit"><span class="val" id="h">00</span><span class="lab">часов</span></div>
+            <div class="timer-unit"><span class="val" id="m">00</span><span class="lab">минут</span></div>
+            <div class="timer-unit"><span class="val" id="s">00</span><span class="lab">секунд</span></div>
+        </div>
+
+        <div class="signature">
+            С любовью, Евгений и Анна
+        </div>
+    </section>
 </div>
 
 <audio id="bgMusic" src="песня.mp3" loop></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    const swiper = new Swiper(".mySwiper", {
-        loop: true,
-        autoplay: { delay: 3500, disableOnInteraction: false },
-        pagination: { el: ".swiper-pagination", clickable: true },
-    });
-
+    const swiper = new Swiper(".mySwiper", { loop: true, autoplay: { delay: 3500 } });
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
-    const statusText = document.getElementById('statusText');
     let isPlaying = false;
 
     function toggleMusic() {
-        if (isPlaying) {
-            music.pause();
-            btn.classList.remove('playing');
-            statusText.textContent = 'включить песнопения';
-        } else {
-            music.play().catch(e => console.log("Нужен клик"));
-            btn.classList.add('playing');
-            statusText.textContent = 'песнопения звучат';
-        }
+        if (isPlaying) { music.pause(); btn.classList.remove('playing'); document.getElementById('statusText').textContent = 'включить музыку'; } 
+        else { music.play(); btn.classList.add('playing'); document.getElementById('statusText').textContent = 'музыка играет'; }
         isPlaying = !isPlaying;
     }
 
-    function toggleCompanion(show) {
-        const container = document.getElementById('compContainer');
-        const inputField = document.getElementById('companion_name');
-        if (show) {
-            container.classList.add('visible');
-            inputField.setAttribute('required', 'required');
-        } else {
-            container.classList.remove('visible');
-            inputField.removeAttribute('required');
-            inputField.value = '';
-        }
+    function countdown() {
+        const target = new Date("August 1, 2026 00:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = target - now;
+        if (diff <= 0) return;
+        document.getElementById("d").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("h").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("m").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("s").innerText = Math.floor((diff % (1000 * 60)) / 1000);
     }
-
-    document.getElementById('weddingForm').onsubmit = function(e) {
-        e.preventDefault();
-        alert('Спасибо! Ваша весточка отправлена.');
-    };
+    setInterval(countdown, 1000); countdown();
 </script>
 </body>
 </html>
