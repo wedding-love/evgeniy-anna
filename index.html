@@ -44,9 +44,10 @@
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
+        /* УМЕНЬШЕННЫЕ ОТСТУПЫ МЕЖДУ БЛОКАМИ */
         section {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 40px;
+            padding-bottom: 40px;
         }
 
         .block-one {
@@ -60,7 +61,7 @@
 
         .music-strip {
             background-color: var(--bg-light);
-            padding: 25px 0;
+            padding: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -75,16 +76,18 @@
         }
 
         .music-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             fill: var(--accent);
             margin-bottom: 6px;
         }
 
+        /* УВЕЛИЧЕННЫЙ ШРИФТ МУЗЫКИ */
         .music-text {
-            font-size: 11px;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            font-weight: bold;
         }
 
         .image-block {
@@ -98,25 +101,25 @@
         }
 
         .section-title {
-            font-size: clamp(22px, 6vw, 28px);
+            font-size: clamp(22px, 6vw, 26px);
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* ПОЛНЫЙ КАЛЕНДАРЬ АВГУСТ */
+        /* КАЛЕНДАРЬ АВГУСТ */
         .calendar-container {
             width: 90%;
             max-width: 320px;
             margin: 0 auto;
             border: 1px solid var(--accent);
-            padding: 40px 15px;
+            padding: 30px 15px;
         }
 
         .calendar-month {
             font-size: 24px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
             text-transform: uppercase;
         }
@@ -130,13 +133,13 @@
         .day-name {
             font-size: 12px;
             font-weight: bold;
-            padding-bottom: 12px;
+            padding-bottom: 8px;
             opacity: 0.8;
         }
 
         .day-number {
             font-size: 17px;
-            padding: 12px 0;
+            padding: 10px 0;
             position: relative;
             z-index: 1;
         }
@@ -151,8 +154,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23800000'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center;
@@ -163,7 +166,7 @@
         .swiper {
             width: 100%;
             aspect-ratio: 4/3;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .swiper-slide img {
@@ -173,37 +176,36 @@
         }
 
         .loc-item {
-            margin-bottom: 45px;
+            margin-bottom: 30px;
             text-align: center;
             padding: 0 25px;
         }
 
         .loc-name {
-            font-size: 22px;
-            margin-bottom: 12px;
+            font-size: 20px;
+            margin-bottom: 8px;
             text-decoration: underline;
-            text-underline-offset: 6px;
+            text-underline-offset: 4px;
         }
 
         .loc-address {
             font-size: 17px;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .city-highlight {
             display: block;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 18px;
-            margin-bottom: 6px;
+            font-size: 17px;
+            margin-bottom: 4px;
         }
 
-        /* КАРТА КРУПНО */
+        /* КАРТА БЕЗ МАРКЕРА ПОВЕРХ */
         .map-wrapper {
             position: relative;
             width: 100%;
-            height: 450px;
-            margin-top: 40px;
+            height: 400px;
             border-top: 1px solid var(--accent);
             border-bottom: 1px solid var(--accent);
         }
@@ -213,40 +215,6 @@
             height: 100%;
             border: none;
             filter: grayscale(0.2) contrast(1.1);
-        }
-
-        .map-marker {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .marker-label {
-            background: var(--accent);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            margin-bottom: 6px;
-            font-family: var(--font-main);
-            letter-spacing: 1px;
-        }
-
-        .marker-dot {
-            width: 18px;
-            height: 18px;
-            background: var(--accent);
-            border: 3px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         /* АНКЕТА ГОСТЯ */
@@ -260,18 +228,18 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 25px;
         }
 
         .form-group label {
             font-size: 19px;
             display: block;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 12px 0;
+            padding: 10px 0;
             border: none;
             border-bottom: 1px solid var(--accent);
             background: transparent;
@@ -284,34 +252,33 @@
         .radio-group label {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             font-size: 18px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .submit-btn {
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
-            padding: 20px;
+            padding: 18px;
             font-family: var(--font-main);
             font-size: 17px;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            margin-top: 20px;
         }
 
         /* ФИНАЛ */
         .final-section {
-            padding: 100px 20px 120px;
+            padding: 60px 20px 80px;
             text-align: center;
         }
 
         .story-text {
-            font-size: 19px;
-            line-height: 1.8;
-            margin-bottom: 60px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
@@ -319,32 +286,35 @@
         .timer-display {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 60px;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
         .timer-unit .val {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: bold;
             border-bottom: 2px solid var(--accent);
             display: block;
-            min-width: 55px;
+            min-width: 50px;
         }
 
         .timer-unit .lab {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            margin-top: 10px;
+            margin-top: 8px;
             display: block;
         }
 
+        /* ОДНА СТРОКА ДЛЯ С ЛЮБОВЬЮ */
         .signature {
             font-family: var(--font-accent);
-            font-size: clamp(26px, 8vw, 34px);
+            font-size: clamp(22px, 6.5vw, 30px);
             font-style: italic;
             color: var(--accent);
-            white-space: nowrap;
-            margin-top: 40px;
+            white-space: nowrap; 
+            margin-top: 30px;
+            display: block;
+            text-align: center;
         }
 
         @keyframes pulse {
@@ -379,10 +349,8 @@
                 <div class="day-name">Пн</div><div class="day-name">Вт</div><div class="day-name">Ср</div>
                 <div class="day-name">Чт</div><div class="day-name">Пт</div><div class="day-name">Сб</div>
                 <div class="day-name">Вс</div>
-                
                 <div class="day-number"></div><div class="day-number"></div><div class="day-number"></div>
                 <div class="day-number"></div><div class="day-number"></div>
-                
                 <div class="day-number target">1</div><div class="day-number">2</div>
                 <div class="day-number">3</div><div class="day-number">4</div><div class="day-number">5</div>
                 <div class="day-number">6</div><div class="day-number">7</div><div class="day-number">8</div><div class="day-number">9</div>
@@ -411,17 +379,22 @@
             <div class="loc-name">Регистрация</div>
             <div class="loc-address"><span class="city-highlight">г. Несвиж</span>ул. Советская, 3 (Ратуша)</div>
         </div>
+        <div class="loc-item">
+            <div class="loc-name">Шлюб</div>
+            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>Костёл «Божага цела»</div>
+        </div>
+        <div class="loc-item">
+            <div class="loc-name">Банкет</div>
+            <div class="loc-address"><span class="city-highlight">г. Городея</span>Ресторан «Трактир для друзей»</div>
+        </div>
 
         <div class="map-wrapper">
-            <div class="map-marker">
-                <div class="marker-label">Наше место</div>
-                <div class="marker-dot"></div>
-            </div>
-            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681710%2C53.219502&mode=search&oid=1114516757&ol=biz&z=18" allowfullscreen="true"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681710%2C53.219502&mode=search&oid=1114516757&ol=biz&z=17" allowfullscreen="true"></iframe>
         </div>
     </section>
 
     <section class="image-block"><img src="3.jpg" alt=""></section>
+    <section class="image-block"><img src="4.jpg" alt=""></section>
 
     <section class="rsvp-section">
         <h2 class="section-title">Анкета гостя</h2>
@@ -477,7 +450,6 @@
         isPlaying = !isPlaying;
     }
 
-    // Правильное склонение
     function getDeclension(number, titles) {
         const cases = [2, 0, 1, 1, 1, 2];
         return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
