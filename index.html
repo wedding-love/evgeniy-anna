@@ -31,7 +31,6 @@
             scroll-behavior: smooth;
             overflow-x: hidden; 
             color: var(--accent);
-            /* Увеличен базовый шрифт */
             font-size: 18px; 
         }
 
@@ -56,7 +55,7 @@
 
         .music-strip {
             background-color: var(--bg-light);
-            padding: 15px 0;
+            padding: 10px 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -71,14 +70,14 @@
         }
 
         .music-icon {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             fill: var(--accent);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .music-text {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -90,22 +89,21 @@
         }
 
         .section-title {
-            font-size: clamp(24px, 7vw, 30px);
+            font-size: clamp(22px, 6vw, 28px);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Уменьшен воздух */
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 0 10px;
         }
 
-        /* КАЛЕНДАРЬ - Полная сетка */
+        /* КАЛЕНДАРЬ */
         .calendar-section {
-            padding: 30px 15px;
+            padding: 25px 15px;
         }
 
         .calendar-container {
             width: 100%;
-            max-width: 340px;
+            max-width: 320px;
             margin: 0 auto;
             border: 1px solid var(--accent);
             padding: 20px 10px;
@@ -113,7 +111,7 @@
 
         .calendar-month {
             font-size: 24px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             text-transform: uppercase;
         }
@@ -125,15 +123,15 @@
         }
 
         .day-name {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
-            padding-bottom: 12px;
+            padding-bottom: 8px;
             opacity: 0.8;
         }
 
         .day-number {
-            font-size: 18px;
-            padding: 10px 0;
+            font-size: 17px;
+            padding: 8px 0;
             position: relative;
             z-index: 1;
         }
@@ -148,8 +146,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23800000'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center;
@@ -158,13 +156,13 @@
 
         /* МЕСТО ПРОВЕДЕНИЯ */
         .location-section {
-            padding: 30px 15px;
+            padding: 25px 15px 10px;
         }
 
         .swiper {
             width: 100%;
             aspect-ratio: 4/3;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .swiper-slide img {
@@ -174,131 +172,146 @@
         }
 
         .loc-item {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
         .loc-name {
             font-size: 22px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             text-decoration: underline;
-            text-underline-offset: 5px;
+            text-underline-offset: 4px;
         }
 
         .loc-address {
-            font-size: 18px;
-            line-height: 1.5;
+            font-size: 17px;
+            line-height: 1.4;
         }
 
         .city-highlight {
             display: block;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 19px;
-            margin-bottom: 4px;
+            font-size: 18px;
         }
 
-        /* АНКЕТА ГOСТЯ */
+        /* КАРТА */
+        .map-container {
+            width: 100%;
+            height: 350px;
+            margin-top: 10px;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+
+        /* АНКЕТА ГОСТЯ */
         .rsvp-section {
             background-color: var(--bg-form);
-            padding: 40px 15px;
+            padding: 35px 15px;
         }
 
         .rsvp-form {
             width: 100%;
-            max-width: 340px;
+            max-width: 320px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         .form-group label {
-            font-size: 20px;
+            font-size: 19px;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 10px 0;
+            padding: 8px 0;
             border: none;
             border-bottom: 1px solid var(--accent);
             background: transparent;
             color: var(--accent);
             font-family: var(--font-main);
-            font-size: 18px;
+            font-size: 17px;
             outline: none;
         }
 
         .radio-group label {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            margin-bottom: 10px;
+            gap: 10px;
+            font-size: 17px;
+            margin-bottom: 8px;
         }
 
         .submit-btn {
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
-            padding: 18px;
+            padding: 15px;
             font-family: var(--font-main);
-            font-size: 18px;
+            font-size: 17px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 10px;
         }
 
-        /* ФИНАЛЬНЫЙ БЛОК */
+        /* ФИНАЛ */
         .final-section {
-            padding: 40px 15px 50px;
+            padding: 35px 15px 45px;
             text-align: center;
             background-color: var(--bg-light);
         }
 
         .story-text {
-            font-size: 19px;
-            line-height: 1.5;
-            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .timer-display {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 40px;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
         .timer-unit .val {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: bold;
             border-bottom: 2px solid var(--accent);
             display: block;
-            min-width: 50px;
+            min-width: 45px;
         }
 
         .timer-unit .lab {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 4px;
             display: block;
         }
 
         .signature {
             font-family: var(--font-accent);
-            font-size: clamp(26px, 8vw, 34px);
+            font-size: clamp(24px, 7vw, 30px);
             font-style: italic;
             color: var(--accent);
+            /* Подпись на одной строке */
+            white-space: nowrap; 
             margin-top: 15px;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
         .playing .music-icon { animation: pulse 2s infinite ease-in-out; }
@@ -328,10 +341,8 @@
                 <div class="day-name">Пн</div><div class="day-name">Вт</div><div class="day-name">Ср</div>
                 <div class="day-name">Чт</div><div class="day-name">Пт</div><div class="day-name">Сб</div>
                 <div class="day-name">Вс</div>
-                
                 <div class="day-number"></div><div class="day-number"></div><div class="day-number"></div>
                 <div class="day-number"></div><div class="day-number"></div>
-                
                 <div class="day-number target">1</div><div class="day-number">2</div>
                 <div class="day-number">3</div><div class="day-number">4</div><div class="day-number">5</div>
                 <div class="day-number">6</div><div class="day-number">7</div><div class="day-number">8</div><div class="day-number">9</div>
@@ -341,7 +352,7 @@
                 <div class="day-number">20</div><div class="day-number">21</div><div class="day-number">22</div><div class="day-number">23</div>
                 <div class="day-number">24</div><div class="day-number">25</div><div class="day-number">26</div>
                 <div class="day-number">27</div><div class="day-number">28</div><div class="day-number">29</div><div class="day-number">30</div>
-                <div class="day-number">31</div><div class="day-number"></div><div class="day-number"></div>
+                <div class="day-number">31</div>
             </div>
         </div>
     </section>
@@ -358,7 +369,7 @@
 
         <div class="loc-item">
             <div class="loc-name">Регистрация</div>
-            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>Ратуша, ул. Советская, 3</div>
+            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>ул. Советская, 3 (Ратуша)</div>
         </div>
         <div class="loc-item">
             <div class="loc-name">Шлюб</div>
@@ -367,6 +378,10 @@
         <div class="loc-item">
             <div class="loc-name">Банкет</div>
             <div class="loc-address"><span class="city-highlight">г. Городея</span>Ресторан «Трактир для друзей»</div>
+        </div>
+
+        <div class="map-container">
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681710%2C53.219502&mode=search&oid=1114516757&ol=biz&z=16" allowfullscreen="true"></iframe>
         </div>
     </section>
 
@@ -423,7 +438,7 @@
             btn.classList.remove('playing'); 
             document.getElementById('statusText').textContent = 'включить музыку'; 
         } else { 
-            music.play().catch(e => console.log("Нужен клик для запуска"));
+            music.play().catch(e => console.log("Нужен клик"));
             btn.classList.add('playing'); 
             document.getElementById('statusText').textContent = 'музыка играет'; 
         }
