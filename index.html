@@ -31,7 +31,6 @@
             scroll-behavior: smooth;
             overflow-x: hidden; 
             color: var(--accent);
-            font-size: 18px; 
         }
 
         .wrapper {
@@ -43,16 +42,10 @@
             flex-direction: column;
             min-height: 100vh;
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-
-        /* ОТСТУПЫ МЕЖДУ СЕКЦИЯМИ */
-        section {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            gap: 2px; /* Небольшой разделитель между блоками фото */
         }
 
         .block-one {
-            padding: 0;
             width: 100%;
             height: 100vh; 
             background: url('1.jpg') no-repeat center center;
@@ -62,7 +55,7 @@
 
         .music-strip {
             background-color: var(--bg-light);
-            padding: 25px 0;
+            padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -80,17 +73,13 @@
             width: 24px;
             height: 24px;
             fill: var(--accent);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .music-text {
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .image-block {
-            padding: 0;
+            letter-spacing: 1px;
         }
 
         .image-block img {
@@ -99,27 +88,31 @@
             display: block;
         }
 
-        /* УВЕЛИЧЕННЫЙ ОТСТУП ПОСЛЕ ЗАГОЛОВКА */
         .section-title {
-            font-size: clamp(22px, 6vw, 28px);
+            font-size: clamp(20px, 6vw, 26px);
             text-align: center;
-            margin-bottom: 50px; /* Больше пространства до контента */
+            margin-bottom: 25px; /* Увеличил отступ */
             text-transform: uppercase;
             letter-spacing: 2px;
+            padding: 0 10px;
         }
 
         /* КАЛЕНДАРЬ */
+        .calendar-section {
+            padding: 40px 15px; /* Увеличил отступы */
+        }
+
         .calendar-container {
-            width: 90%;
-            max-width: 320px;
+            width: 100%;
+            max-width: 300px;
             margin: 0 auto;
             border: 1px solid var(--accent);
-            padding: 40px 10px;
+            padding: 20px 10px;
         }
 
         .calendar-month {
-            font-size: 24px;
-            margin-bottom: 25px;
+            font-size: 20px;
+            margin-bottom: 15px;
             text-align: center;
             text-transform: uppercase;
         }
@@ -131,15 +124,13 @@
         }
 
         .day-name {
-            font-size: 12px;
-            font-weight: bold;
-            padding-bottom: 12px;
-            opacity: 0.8;
+            font-size: 11px;
+            padding-bottom: 10px;
         }
 
         .day-number {
-            font-size: 17px;
-            padding: 12px 0;
+            font-size: 16px;
+            padding: 8px 0;
             position: relative;
             z-index: 1;
         }
@@ -154,8 +145,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23800000'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center;
@@ -163,10 +154,14 @@
         }
 
         /* МЕСТО ПРОВЕДЕНИЯ */
+        .location-section {
+            padding: 40px 15px 30px; /* Увеличил отступы */
+        }
+
         .swiper {
             width: 100%;
-            aspect-ratio: 4/3;
-            margin-bottom: 40px; /* Отступ от фото до текста */
+            aspect-ratio: 3/2;
+            margin-bottom: 30px;
         }
 
         .swiper-slide img {
@@ -176,183 +171,140 @@
         }
 
         .loc-item {
-            margin-bottom: 45px; /* Больше воздуха между пунктами */
+            margin-bottom: 30px;
             text-align: center;
-            padding: 0 25px;
         }
 
         .loc-name {
-            font-size: 22px;
-            margin-bottom: 12px;
+            font-size: 20px;
+            margin-bottom: 8px;
             text-decoration: underline;
-            text-underline-offset: 6px;
+            text-underline-offset: 4px;
         }
 
         .loc-address {
-            font-size: 17px;
-            line-height: 1.6;
+            font-size: 16px;
+            line-height: 1.5;
         }
 
         .city-highlight {
             display: block;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 18px;
-            margin-bottom: 6px;
+            font-size: 17px;
+            margin-bottom: 4px;
         }
 
         /* КАРТА */
-        .map-wrapper {
-            position: relative;
+        .map-container {
             width: 100%;
-            height: 400px;
-            margin-top: 40px;
-            border-top: 1px solid var(--accent);
-            border-bottom: 1px solid var(--accent);
+            height: 300px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(128, 0, 0, 0.1);
+            filter: grayscale(0.3); /* Немного приглушим цвета под стиль */
         }
 
-        .map-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            filter: grayscale(0.2) contrast(1.1);
-        }
-
-        .map-marker {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .marker-label {
-            background: var(--accent);
-            color: white;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            margin-bottom: 6px;
-            font-family: var(--font-main);
-            letter-spacing: 1px;
-        }
-
-        .marker-dot {
-            width: 18px;
-            height: 18px;
-            background: var(--accent);
-            border: 3px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        /* АНКЕТА ГОСТЯ */
+        /* АНКЕТА ГOСТЯ */
         .rsvp-section {
             background-color: var(--bg-form);
+            padding: 50px 15px; /* Увеличил отступы */
         }
 
         .rsvp-form {
-            width: 85%;
+            width: 100%;
             max-width: 320px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Большой отступ между вопросами */
+            gap: 25px;
         }
 
         .form-group label {
-            font-size: 19px;
+            font-size: 18px;
             display: block;
-            margin-bottom: 18px; /* Отступ от вопроса до поля ввода/вариантов */
+            margin-bottom: 10px;
         }
 
         .rsvp-form input[type="text"] {
             width: 100%;
-            padding: 12px 0;
+            padding: 10px 0;
             border: none;
             border-bottom: 1px solid var(--accent);
             background: transparent;
             color: var(--accent);
             font-family: var(--font-main);
-            font-size: 18px;
+            font-size: 16px;
             outline: none;
         }
 
         .radio-group label {
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-size: 18px;
-            margin-bottom: 15px;
+            gap: 12px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
 
         .submit-btn {
             background-color: var(--accent);
             color: var(--bg-light);
             border: none;
-            padding: 20px;
+            padding: 18px;
             font-family: var(--font-main);
-            font-size: 17px;
+            font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-top: 15px;
             cursor: pointer;
-            margin-top: 20px;
         }
 
-        /* ФИНАЛ */
+        /* ФИНАЛЬНЫЙ БЛОК */
         .final-section {
-            padding: 100px 20px 120px;
+            padding: 50px 15px;
             text-align: center;
+            background-color: var(--bg-light);
         }
 
         .story-text {
-            font-size: 19px;
-            line-height: 1.8;
-            margin-bottom: 60px;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
         }
 
         .timer-display {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 60px;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
         .timer-unit .val {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: bold;
-            border-bottom: 2px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
             display: block;
-            min-width: 55px;
+            margin-bottom: 5px;
         }
 
         .timer-unit .lab {
-            font-size: 12px;
+            font-size: 10px;
             text-transform: uppercase;
-            margin-top: 10px;
-            display: block;
         }
 
         .signature {
             font-family: var(--font-accent);
-            font-size: clamp(26px, 8vw, 34px);
+            font-size: clamp(24px, 7vw, 30px);
             font-style: italic;
             color: var(--accent);
-            white-space: nowrap;
-            margin-top: 40px;
+            margin-top: 15px;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
         .playing .music-icon { animation: pulse 2s infinite ease-in-out; }
@@ -379,28 +331,17 @@
         <div class="calendar-container">
             <div class="calendar-month">Август 2026</div>
             <div class="calendar-grid">
-                <div class="day-name">Пн</div><div class="day-name">Вт</div><div class="day-name">Ср</div>
-                <div class="day-name">Чт</div><div class="day-name">Пт</div><div class="day-name">Сб</div>
-                <div class="day-name">Вс</div>
-                <div class="day-number"></div><div class="day-number"></div><div class="day-number"></div>
-                <div class="day-number"></div><div class="day-number"></div>
+                <div class="day-name">Пн</div><div class="day-name">Вт</div><div class="day-name">Ср</div><div class="day-name">Чт</div><div class="day-name">Пт</div><div class="day-name">Сб</div><div class="day-name">Вс</div>
+                <div class="day-number"></div><div class="day-number"></div><div class="day-number"></div><div class="day-number"></div><div class="day-number"></div>
                 <div class="day-number target">1</div><div class="day-number">2</div>
-                <div class="day-number">3</div><div class="day-number">4</div><div class="day-number">5</div>
-                <div class="day-number">6</div><div class="day-number">7</div><div class="day-number">8</div><div class="day-number">9</div>
-                <div class="day-number">10</div><div class="day-number">11</div><div class="day-number">12</div>
-                <div class="day-number">13</div><div class="day-number">14</div><div class="day-number">15</div><div class="day-number">16</div>
-                <div class="day-number">17</div><div class="day-number">18</div><div class="day-number">19</div>
-                <div class="day-number">20</div><div class="day-number">21</div><div class="day-number">22</div><div class="day-number">23</div>
-                <div class="day-number">24</div><div class="day-number">25</div><div class="day-number">26</div>
-                <div class="day-number">27</div><div class="day-number">28</div><div class="day-number">29</div><div class="day-number">30</div>
-                <div class="day-number">31</div>
+                <div class="day-number">3</div><div class="day-number">4</div><div class="day-number">5</div><div class="day-number">6</div><div class="day-number">7</div><div class="day-number">8</div><div class="day-number">9</div>
+                <div class="day-number">10</div><div class="day-number">11</div><div class="day-number">12</div><div class="day-number">13</div><div class="day-number">14</div><div class="day-number">15</div><div class="day-number">16</div>
             </div>
         </div>
     </section>
 
     <section class="location-section">
         <h2 class="section-title">Место проведения</h2>
-        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="место1.jpeg" alt="Ратуша"></div>
@@ -411,22 +352,24 @@
 
         <div class="loc-item">
             <div class="loc-name">Регистрация</div>
-            <div class="loc-address">
-                <span class="city-highlight">г. Несвиж</span>
-                ул. Советская, 3 (Ратуша)
-            </div>
+            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>Ратуша, ул. Советская, 3</div>
+        </div>
+        <div class="loc-item">
+            <div class="loc-name">Шлюб</div>
+            <div class="loc-address"><span class="city-highlight">г. Несвиж</span>Костёл «Божага цела»</div>
+        </div>
+        <div class="loc-item">
+            <div class="loc-name">Банкет</div>
+            <div class="loc-address"><span class="city-highlight">г. Городея</span>Ресторан «Трактир для друзей»</div>
         </div>
 
-        <div class="map-wrapper">
-            <div class="map-marker">
-                <div class="marker-label">Наше место</div>
-                <div class="marker-dot"></div>
-            </div>
-            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681710%2C53.219502&mode=search&oid=1114516757&ol=biz&z=17" allowfullscreen="true"></iframe>
+        <div class="map-container">
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681755%2C53.218498&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjI4NTI2OBJN0JHQtdC70LDRgNGD0YHRjCwg0JzRltC90YHQutCw0Y8g0LLQvtCx0LvQsNGB0YLRjCwg0J3RjdGB0LLRltC2LCDQodCw0LLQtdGG0QutCw0Y8g0LLRg9C70ZbRhtCwLCAzIgoN76pVQhV-Y0FC&z=16" width="100%" height="100%" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
         </div>
     </section>
 
     <section class="image-block"><img src="3.jpg" alt=""></section>
+    <section class="image-block"><img src="4.jpg" alt=""></section>
 
     <section class="rsvp-section">
         <h2 class="section-title">Анкета гостя</h2>
@@ -435,7 +378,6 @@
                 <label>Как к вам обращаться?</label>
                 <input type="text" name="guest_name" required placeholder="Ваше имя...">
             </div>
-            
             <div class="form-group">
                 <label>Придете ли вы?</label>
                 <div class="radio-group">
@@ -443,8 +385,7 @@
                     <label><input type="radio" name="attendance" value="no"> К сожалению, нет</label>
                 </div>
             </div>
-            
-            <button type="submit" class="submit-btn">отправить весточку</button>
+            <button type="submit" class="submit-btn">Отправить ответ</button>
         </form>
     </section>
 
@@ -453,10 +394,10 @@
     <section class="final-section">
         <div class="story-text">ДОЛГО ЛИ, КОРОТКО ЛИ,<br>А ДЕЛО К ПРАЗДНИКУ ШЛО...</div>
         <div class="timer-display" id="timer">
-            <div class="timer-unit"><span class="val" id="d">00</span><span class="lab" id="d-label">дней</span></div>
-            <div class="timer-unit"><span class="val" id="h">00</span><span class="lab" id="h-label">часов</span></div>
-            <div class="timer-unit"><span class="val" id="m">00</span><span class="lab" id="m-label">минут</span></div>
-            <div class="timer-unit"><span class="val" id="s">00</span><span class="lab" id="s-label">секунд</span></div>
+            <div class="timer-unit"><span class="val" id="d">00</span><span class="lab">дней</span></div>
+            <div class="timer-unit"><span class="val" id="h">00</span><span class="lab">часов</span></div>
+            <div class="timer-unit"><span class="val" id="m">00</span><span class="lab">минут</span></div>
+            <div class="timer-unit"><span class="val" id="s">00</span><span class="lab">секунд</span></div>
         </div>
 
         <div class="signature">
@@ -476,19 +417,15 @@
 
     function toggleMusic() {
         if (isPlaying) { 
-            music.pause(); btn.classList.remove('playing'); 
+            music.pause(); 
+            btn.classList.remove('playing'); 
             document.getElementById('statusText').textContent = 'включить музыку'; 
         } else { 
-            music.play().catch(e => console.log("Play"));
+            music.play(); 
             btn.classList.add('playing'); 
             document.getElementById('statusText').textContent = 'музыка играет'; 
         }
         isPlaying = !isPlaying;
-    }
-
-    function getDeclension(number, titles) {
-        const cases = [2, 0, 1, 1, 1, 2];
-        return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     }
 
     function countdown() {
@@ -496,21 +433,10 @@
         const now = new Date().getTime();
         const diff = target - now;
         if (diff <= 0) return;
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        document.getElementById("d").innerText = days;
-        document.getElementById("h").innerText = hours;
-        document.getElementById("m").innerText = minutes;
-        document.getElementById("s").innerText = seconds;
-
-        document.getElementById("d-label").innerText = getDeclension(days, ['день', 'дня', 'дней']);
-        document.getElementById("h-label").innerText = getDeclension(hours, ['час', 'часа', 'часов']);
-        document.getElementById("m-label").innerText = getDeclension(minutes, ['минута', 'минуты', 'минут']);
-        document.getElementById("s-label").innerText = getDeclension(seconds, ['секунда', 'секунды', 'секунд']);
+        document.getElementById("d").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("h").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("m").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("s").innerText = Math.floor((diff % (1000 * 60)) / 1000);
     }
     setInterval(countdown, 1000); countdown();
 </script>
