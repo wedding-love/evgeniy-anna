@@ -91,7 +91,7 @@
         .section-title {
             font-size: clamp(22px, 6vw, 28px);
             text-align: center;
-            margin-bottom: 15px; /* Уменьшен воздух */
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -208,7 +208,7 @@
             width: 100%;
             height: 100%;
             border: none;
-            filter: grayscale(0.2) contrast(1.1);
+            filter: grayscale(0.1) contrast(1.1);
         }
 
         /* АНКЕТА ГОСТЯ */
@@ -261,52 +261,53 @@
             font-size: 17px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
         }
 
         /* ФИНАЛ */
         .final-section {
-            padding: 35px 15px 45px;
+            padding: 60px 15px 80px; /* Увеличен блок */
             text-align: center;
             background-color: var(--bg-light);
         }
 
         .story-text {
             font-size: 18px;
-            line-height: 1.4;
-            margin-bottom: 25px;
+            line-height: 1.6;
+            margin-bottom: 40px;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         .timer-display {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
         .timer-unit .val {
-            font-size: 30px;
+            font-size: 34px;
             font-weight: bold;
             border-bottom: 2px solid var(--accent);
             display: block;
-            min-width: 45px;
+            min-width: 50px;
         }
 
         .timer-unit .lab {
-            font-size: 10px;
+            font-size: 11px;
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 6px;
             display: block;
         }
 
         .signature {
             font-family: var(--font-accent);
-            font-size: clamp(24px, 7vw, 30px);
+            font-size: clamp(24px, 7vw, 32px);
             font-style: italic;
             color: var(--accent);
-            /* Подпись на одной строке */
-            white-space: nowrap; 
-            margin-top: 15px;
+            white-space: nowrap; /* Одной строкой */
+            margin-top: 25px;
         }
 
         @keyframes pulse {
@@ -381,7 +382,7 @@
         </div>
 
         <div class="map-container">
-            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681710%2C53.219502&mode=search&oid=1114516757&ol=biz&z=16" allowfullscreen="true"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=26.681710%2C53.219502&mode=search&ol=biz&oid=1114516757&z=17" allowfullscreen="true"></iframe>
         </div>
     </section>
 
@@ -402,7 +403,7 @@
                     <label><input type="radio" name="attendance" value="no"> К сожалению, нет</label>
                 </div>
             </div>
-            <button type="submit" class="submit-btn">Отправить ответ</button>
+            <button type="submit" class="submit-btn">отправить весточку</button>
         </form>
     </section>
 
@@ -411,10 +412,10 @@
     <section class="final-section">
         <div class="story-text">ДОЛГО ЛИ, КОРОТКО ЛИ,<br>А ДЕЛО К ПРАЗДНИКУ ШЛО...</div>
         <div class="timer-display" id="timer">
-            <div class="timer-unit"><span class="val" id="d">00</span><span class="lab">дней</span></div>
-            <div class="timer-unit"><span class="val" id="h">00</span><span class="lab">часов</span></div>
-            <div class="timer-unit"><span class="val" id="m">00</span><span class="lab">минут</span></div>
-            <div class="timer-unit"><span class="val" id="s">00</span><span class="lab">секунд</span></div>
+            <div class="timer-unit"><span class="val" id="d">00</span><span class="lab" id="d-label">дней</span></div>
+            <div class="timer-unit"><span class="val" id="h">00</span><span class="lab" id="h-label">часов</span></div>
+            <div class="timer-unit"><span class="val" id="m">00</span><span class="lab" id="m-label">минут</span></div>
+            <div class="timer-unit"><span class="val" id="s">00</span><span class="lab" id="s-label">секунд</span></div>
         </div>
 
         <div class="signature">
@@ -434,15 +435,19 @@
 
     function toggleMusic() {
         if (isPlaying) { 
-            music.pause(); 
-            btn.classList.remove('playing'); 
+            music.pause(); btn.classList.remove('playing'); 
             document.getElementById('statusText').textContent = 'включить музыку'; 
         } else { 
-            music.play().catch(e => console.log("Нужен клик"));
+            music.play().catch(e => console.log("Клик"));
             btn.classList.add('playing'); 
             document.getElementById('statusText').textContent = 'музыка играет'; 
         }
         isPlaying = !isPlaying;
+    }
+
+    function getDeclension(number, titles) {
+        const cases = [2, 0, 1, 1, 1, 2];
+        return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     }
 
     function countdown() {
@@ -450,10 +455,21 @@
         const now = new Date().getTime();
         const diff = target - now;
         if (diff <= 0) return;
-        document.getElementById("d").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("h").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        document.getElementById("m").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById("s").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("d").innerText = days;
+        document.getElementById("h").innerText = hours;
+        document.getElementById("m").innerText = minutes;
+        document.getElementById("s").innerText = seconds;
+
+        document.getElementById("d-label").innerText = getDeclension(days, ['день', 'дня', 'дней']);
+        document.getElementById("h-label").innerText = getDeclension(hours, ['час', 'часа', 'часов']);
+        document.getElementById("m-label").innerText = getDeclension(minutes, ['минута', 'минуты', 'минут']);
+        document.getElementById("s-label").innerText = getDeclension(seconds, ['секунда', 'секунды', 'секунд']);
     }
     setInterval(countdown, 1000); countdown();
 </script>
